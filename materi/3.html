@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Persiapan Lingkungan Pengembangan</title>
+        <style>
+            /* From extension vscode.github */
+            /*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+            .vscode-dark img[src$="\#gh-light-mode-only"],
+            .vscode-light img[src$="\#gh-dark-mode-only"] {
+                display: none;
+            }
+        </style>
+
+        <link rel="stylesheet" href="../asset/css/markdown.min.css" />
+        <link rel="stylesheet" href="../asset/css/highlight.min.css" />
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC",
+                    "Segoe UI", system-ui, "Ubuntu", "Droid Sans", sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+            .task-list-item {
+                list-style-type: none;
+            }
+
+            .task-list-item-checkbox {
+                margin-left: -20px;
+                vertical-align: middle;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="persiapan-lingkungan-pengembangan">
+            Persiapan Lingkungan Pengembangan
+        </h1>
+        <h2 id="kenapa-perlu-persiapan">Kenapa Perlu Persiapan</h2>
+        <ul>
+            <li>
+                Karena untuk membuat website menggunakan bahasa PHP, tidak
+                semudah ketika kita membuat website dengan HTML, CSS.
+            </li>
+            <li>
+                Karena dengan menggunakan HTML, CSS kita bisa dengan mudah
+                membuat file HTML dan CSS dimana saja, menyimpannya dimana saja,
+                dan menjalankannya dengan mudah, dengan mengklik 2X filenya /
+                bisa membuka dicode editor, klik kanan open in browser, kemudian
+                websitenya tampil.
+            </li>
+            <li>
+                Untuk menggunakan PHP tidak semudah itu. kita butuh sesuatu yang
+                dinamakan dengan web server
+            </li>
+        </ul>
+        <h2 id="client-side-vs-server-side-scripting-programing">
+            Client-Side Vs. Server-Side Scripting/ Programing
+        </h2>
+        <ul>
+            <li>
+                <p>
+                    Client Side Scripting
+                    <img
+                        src="file:///d:\Project\php\asset\img\3\1.PNG"
+                        alt="1"
+                    />
+                </p>
+                <ul>
+                    <li>
+                        Ketika kita membuat website dengan HTML, CSS, Javascript
+                        itu kita sebut dengan Client Side Scripting. - Karena
+                        semua pemrosesannya terjadi disisi client, dikomputer
+                        masing2.
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>
+                    Server Side Scripting
+                    <img
+                        src="file:///d:\Project\php\asset\img\3\2.PNG"
+                        alt="2"
+                    />
+                </p>
+                <ul>
+                    <li>
+                        Saat website kita, dibuat dengan bahasa PHP didalamnya,
+                        maka yang terjadi, pada saat membuka websitenya lewat
+                        browser, browser tersebut mengirimkan sebuah request
+                        (meminta sesuatu) kemana?
+                    </li>
+                    <li>Ke server, dia meminta keserver.</li>
+                    <li>
+                        Web server ada banyak macamnya, Apache, IIS, dll. jadi
+                        ini adalah sebuah web server yang mengelola request /
+                        permintaan dari client
+                    </li>
+                    <li>
+                        Nah karena sekarang, proses nya tidak hanya terjadi
+                        disisi client, tapi ada juga disisi server.
+                    </li>
+                    <li>
+                        Karena ada bahasa pemrograman yang berjalannya diserver.
+                    </li>
+                    <li>Contohnya PHP, ASP, dll</li>
+                    <li>
+                        Jadi ketika halaman webnya yang dibuka didalamnya itu
+                        terdapat salah satu bahasa pemrograman tadi, maka
+                        servernya kan mengelola permintaan itu
+                    </li>
+                    <li>Didalam website kita, ada struktur HTML</li>
+                </ul>
+                <pre><code class="language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">&quot;UTF-8&quot;</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Latihan PHP<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello World!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+                <ul>
+                    <li>Kemudian save : index.php</li>
+                    <li>Dihalaman tersebut tidak ada sama sekali bahasa php</li>
+                    <li>
+                        Yang terjadi nanti, web browser akan meminta request
+                        keserver, diserver akan membaca &quot;apakah didalam
+                        halaman tersebut ada bahasa PHP atau tidak&quot;, kalo
+                        tidak, web servernya akan langsung merespon kembali
+                        permintaannya.
+                    </li>
+                    <li>Ketika didalam halaman tersebut, ada syntax php</li>
+                </ul>
+                <pre><code class="language-php">&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;meta charset=<span class="hljs-string">&quot;UTF-8&quot;</span> /&gt;
+        &lt;title&gt;Latihan PHP&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;
+            Hello
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Faizal&quot;</span>; <span class="hljs-meta">?&gt;</span>
+        &lt;/h1&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+                <ul>
+                    <li>Save : index.php</li>
+                    <li>
+                        Yang terjadi, browser merequest ke web server. server
+                        akan melihat &quot;ada syntax html, syntax html tiba2
+                        ketemu syntax php&quot;. begitu ketemu syntax PHP, maka
+                        PHP akan mengeksekusi script tadi, misalnya echo (untuk
+                        mencetak sesuatu kelayar)
+                    </li>
+                    <li>
+                        Nanti Faizal akan dicetak sebagai HTML, kemudia
+                        dikembalikan sebagai response keclient.
+                    </li>
+                    <li>
+                        Karena itu bahasa pemrograman PHP, tidak bisa kita
+                        contek, untuk HTML dan CSS bisa kita lihat di inspect,
+                        PHP gak bisa karena semua pemrosesannya terjadi di
+                        server.
+                    </li>
+                    <li>Server akan mengembalikan berupa HTML</li>
+                    <li>
+                        Jadi kalo misalkan nanti kita bikin website pakai PHP,
+                        setelah tampil dilayar, kemudian klik kanan, open
+                        source, syntax PHP nya tidak akan kelihatan.
+                    </li>
+                    <li>
+                        Script2 bahasa pemrograman server tadi bisa terhubung ke
+                        Database.
+                    </li>
+                    <li>Sehingga website kita nanti dinamis.</li>
+                    <li>
+                        Contentnya berubah sesuai dengan data yang kita ubah
+                        didatabase nya
+                    </li>
+                    <li>Ketika datanya tambah websiteya akan bertambah</li>
+                </ul>
+            </li>
+        </ul>
+        <hr />
+        <h2 id="bisa-menginstall-1-per-1">Bisa Menginstall 1 Per 1</h2>
+        <ul>
+            <li>
+                <p>Apache</p>
+                <p>
+                    <a href="http://httpd.apache.org/download.cgi"
+                        >http://httpd.apache.org/download.cgi</a
+                    >
+                </p>
+            </li>
+            <li>
+                <p>PHP</p>
+                <p>
+                    <a href="http://www.php.net/downloads.php"
+                        >http://www.php.net/downloads.php</a
+                    >
+                </p>
+            </li>
+            <li>
+                <p>MySQL</p>
+                <p>
+                    <a href="http://dev.mysql.com/downloads"
+                        >http://dev.mysql.com/downloads</a
+                    >
+                </p>
+            </li>
+            <li>
+                <p>All-In-One Packages</p>
+                <p>Software yang didalamnya ada semua apk diatas</p>
+                <ul>
+                    <li>
+                        <p>WAMP</p>
+                        <p>(Window Apache MySQL, PHP)</p>
+                        <p>
+                            <a href="http://www.wampserver.com/en"
+                                >http://www.wampserver.com/en</a
+                            >
+                        </p>
+                    </li>
+                    <li>
+                        <p>MAMP</p>
+                        <p>(MacOS, Apache MySQL, PHP)</p>
+                        <p>
+                            <a href="http://www.mamp.info/en"
+                                >http://www.mamp.info/en</a
+                            >
+                        </p>
+                    </li>
+                    <li>
+                        <p>LAMP</p>
+                        <p>(Linux, Apache MySQL, PHP)</p>
+                    </li>
+                    <li>
+                        <p>XAMPP</p>
+                        <p>
+                            (X : cross/ silang/ lintas OS, Apache, MariaDB, PHP,
+                            Perl)
+                        </p>
+                        <p>{bisa untuk semua system operasi}</p>
+                        <p>
+                            <a href="http://www.apachefriends.org/index.html"
+                                >http://www.apachefriends.org/index.html</a
+                            >
+                        </p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <hr />
+        <h2 id="sebelum-coding">Sebelum Coding</h2>
+        <ol>
+            <li>Aktifkan control panel diXAMPP</li>
+            <li>klik apache</li>
+            <li>Cek apakah apache sudah jalan : ketik diURL : localhost</li>
+            <li>jika tampil server sudah berjalan normal</li>
+        </ol>
+        <ul>
+            <li>
+                jika membuat sebuah website yang static / client-side biasanya
+                membuat dimana saja bebas, contoh dimydocument latihan.html /
+                index.html / diE
+            </li>
+            <li>
+                untuk PHP harus menyimpan ditempat difolder spesifik : C
+                &gt;&gt; xampp &gt;&gt; htdocs
+            </li>
+            <li>
+                difolder htdocs, akan digunakan sebagi tempat untuk menyimpan
+                fil php.
+            </li>
+            <li>
+                kalo dibuka sudah ada isinya, karena : file ini adalah file yang
+                tampil dihome screen nya localhost
+            </li>
+        </ul>
+        <ol start="5">
+            <li>membuta folder kecil semua didatukan : phpdasar</li>
+        </ol>
+        <ul>
+            <li>
+                <p>
+                    kenapa begitu kita buka localhost akan tampil home screen,
+                    karena : cara kerja dari server PHP itu, localhost itu sama
+                    saja dengan folder htdocs, jadi kalo kita tulis localhost
+                    diURL, itu sama saja dengan membuka folder htdocs
+                </p>
+            </li>
+            <li>
+                <p>
+                    padahal didalam htdocs itu ada banyak folder, kenapa tidak
+                    tampil semua foldernya?, kenapa tampil home screen
+                </p>
+            </li>
+            <li>
+                <p>
+                    karena : ketika kita menulis nama foldernya, begitu kita
+                    buka sebuah folder,
+                </p>
+            </li>
+            <li>
+                <p>
+                    server akan mencari ada gak file yang namanya index.php
+                    difolder itu?, kalo ketemu langsung tampilkan isi, kalo
+                    tidak ada dia akan mencari file yang namanya index.html,
+                    kalo tidak ada tampilkan seluruh isi folder
+                </p>
+            </li>
+            <li>
+                <p>kenapa isinya dashboard?</p>
+            </li>
+            <li>
+                <p>
+                    karena : isi dari index.php, memaksa kita untuk berpindah
+                    kefolder dashboard didalam folder dashboard, mencari
+                    index.php, jika tidak ada cari index.html
+                </p>
+            </li>
+            <li>
+                <p>
+                    kalo kita mau masuk kefolder kita, ketikan :
+                    localhost/folderKita
+                </p>
+            </li>
+            <li>
+                <p>
+                    jika ingin ketika kita buka folder langsung membuka file
+                    kita cukup membuat file index.php atau index.html
+                </p>
+            </li>
+        </ul>
+    </body>
+</html>

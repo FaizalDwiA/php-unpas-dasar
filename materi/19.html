@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Cookie</title>
+        <style>
+            /* From extension vscode.github */
+            /*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+            .vscode-dark img[src$="\#gh-light-mode-only"],
+            .vscode-light img[src$="\#gh-dark-mode-only"] {
+                display: none;
+            }
+        </style>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <link rel="stylesheet" href="../asset/css/markdown.min.css" />
+        <link rel="stylesheet" href="../asset/css/highlight.min.css" />
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC",
+                    "Segoe UI", system-ui, "Ubuntu", "Droid Sans", sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+            .task-list-item {
+                list-style-type: none;
+            }
+
+            .task-list-item-checkbox {
+                margin-left: -20px;
+                vertical-align: middle;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="cookie">Cookie</h1>
+        <h2 id="pengertian">Pengertian</h2>
+        <ul>
+            <li>
+                Informasi yang bisa kita akses <strong>dimana saja</strong>,
+                dihalaman web kita
+            </li>
+            <li>Informasi disimpan di browser / <strong>client</strong></li>
+            <li><strong>Client bisa memanipulasi</strong> cookie(CRUD)</li>
+            <li>setcookie()</li>
+        </ul>
+        <hr />
+        <h2 id="cookie-1">COOKIE</h2>
+        <ul>
+            <li>mengenali user</li>
+            <li>shopping cart</li>
+            <li>personalisasi</li>
+            <li>...</li>
+        </ul>
+        <hr />
+        <h2 id="membuat-cookie">Membuat Cookie</h2>
+        <p><em>halaman1.php</em></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-comment">// membuat cookie</span>
+<span class="hljs-title function_ invoke__">setcookie</span>(<span class="hljs-string">&#x27;nama&#x27;</span>, <span class="hljs-string">&#x27;Faizal Dwi Al Farizi&#x27;</span>);
+
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><em>halaman2.php</em></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$_COOKIE</span>[<span class="hljs-string">&#x27;nama&#x27;</span>];
+
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <hr />
+        <p>kita bisa melihat cookie yang ada dibrowser :</p>
+        <ol>
+            <li>masuk inspect</li>
+            <li>Application</li>
+            <li>Cookie</li>
+            <li>http:localhost</li>
+        </ol>
+        <hr />
+        <p>Untuk bikin baru perlu install dibrowser plug-in : EditThisCookie</p>
+        <hr />
+        <p>
+            cookie juga sama berlaku 1 sesi, <strong>jika tidak diset</strong>
+        </p>
+        <p>
+            <strong>bisa kita set</strong> : setcookie('nama', 'Fazai',
+            time()+60);
+        </p>
+        <p><em>halaman1.php</em></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-comment">// membuat cookie</span>
+<span class="hljs-title function_ invoke__">setcookie</span>(<span class="hljs-string">&#x27;nama&#x27;</span>, <span class="hljs-string">&#x27;Faizal Dwi Al Farizi&#x27;</span>, <span class="hljs-title function_ invoke__">time</span>()+<span class="hljs-number">60</span>);
+
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <hr />
+        <h2 id="cek-remember-me">Cek Remember Me</h2>
+        <p><em>login.php</em></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-title function_ invoke__">session_start</span>();
+
+<span class="hljs-keyword">if</span>( <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_COOKIE</span>[<span class="hljs-string">&#x27;login&#x27;</span>]) ) {
+    <span class="hljs-keyword">if</span>( <span class="hljs-variable">$_COOKIE</span>[<span class="hljs-string">&#x27;login&#x27;</span>] == <span class="hljs-string">&#x27;true&#x27;</span> ) {
+        <span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">&#x27;login&#x27;</span>] == <span class="hljs-literal">true</span>;
+    }
+}
+
+<span class="hljs-keyword">if</span>( <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">&quot;login&quot;</span>]) ) {
+    <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&quot;Location: index.php&quot;</span>);
+    <span class="hljs-keyword">exit</span>;
+}
+
+<span class="hljs-keyword">require</span> <span class="hljs-string">&quot;functions.php&quot;</span>;
+
+<span class="hljs-keyword">if</span>( <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&quot;login&quot;</span>]) ) {
+    <span class="hljs-variable">$username</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&quot;username&quot;</span>];
+    <span class="hljs-variable">$password</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&quot;password&quot;</span>];
+
+    <span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">mysqli_query</span>(<span class="hljs-variable">$conn</span>, <span class="hljs-string">&quot;SELECT * FROM user WHERE username = &#x27;<span class="hljs-subst">$username</span>&#x27;&quot;</span>);
+
+    <span class="hljs-comment">// cek username</span>
+    <span class="hljs-keyword">if</span>( <span class="hljs-title function_ invoke__">mysqli_num_rows</span>(<span class="hljs-variable">$result</span>) === <span class="hljs-number">1</span> ) {
+        <span class="hljs-comment">// cek password</span>
+        <span class="hljs-variable">$row</span> = <span class="hljs-title function_ invoke__">mysqli_fetch_assoc</span>(<span class="hljs-variable">$result</span>);
+        <span class="hljs-keyword">if</span>( <span class="hljs-title function_ invoke__">password_verify</span>(<span class="hljs-variable">$password</span>, <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;password&quot;</span>]) ) {
+            <span class="hljs-comment">// set session</span>
+            <span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">&quot;login&quot;</span>] = <span class="hljs-literal">true</span>;
+
+            <span class="hljs-comment">// cek remember me</span>
+            <span class="hljs-keyword">if</span>( <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;remember&#x27;</span>]) ) {
+                <span class="hljs-comment">// buat cookie</span>
+                <span class="hljs-title function_ invoke__">setcookie</span>(<span class="hljs-string">&#x27;login&#x27;</span>, <span class="hljs-string">&#x27;true&#x27;</span>, <span class="hljs-title function_ invoke__">time</span>() + <span class="hljs-number">60</span>);
+            }
+
+            <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&quot;Location: index.php&quot;</span>);
+            <span class="hljs-keyword">exit</span>;
+        }
+    }
+
+    <span class="hljs-variable">$error</span> = <span class="hljs-literal">true</span>;
+}
+
+<span class="hljs-meta">?&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+&lt;head&gt;
+    &lt;title&gt;Login&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Halaman Login&lt;/h1&gt;
+
+    <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">if</span>( <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$error</span>) ) : <span class="hljs-meta">?&gt;</span>
+        &lt;p style=<span class="hljs-string">&quot;color: red; font-style: italic;&quot;</span>&gt;username / password Salah&lt;/p&gt;
+    <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">endif</span>; <span class="hljs-meta">?&gt;</span>
+
+    &lt;form action=<span class="hljs-string">&quot;&quot;</span> method=<span class="hljs-string">&quot;post&quot;</span>&gt;
+        &lt;ul&gt;
+            &lt;li&gt;
+                &lt;label <span class="hljs-keyword">for</span>=<span class="hljs-string">&quot;username&quot;</span>&gt;Username : &lt;/label&gt;
+                &lt;input type=<span class="hljs-string">&quot;text&quot;</span> name=<span class="hljs-string">&quot;username&quot;</span> id=<span class="hljs-string">&quot;username&quot;</span>&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;label <span class="hljs-keyword">for</span>=<span class="hljs-string">&quot;password&quot;</span>&gt;Password : &lt;/label&gt;
+                &lt;input type=<span class="hljs-string">&quot;password&quot;</span> name=<span class="hljs-string">&quot;password&quot;</span> id=<span class="hljs-string">&quot;password&quot;</span>&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;input type=<span class="hljs-string">&quot;checkbox&quot;</span> name=<span class="hljs-string">&quot;remember&quot;</span> id=<span class="hljs-string">&quot;remember&quot;</span>&gt;
+                &lt;label <span class="hljs-keyword">for</span>=<span class="hljs-string">&quot;remember&quot;</span>&gt;Remember me&lt;/label&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;button type=<span class="hljs-string">&quot;submit&quot;</span> name=<span class="hljs-string">&quot;login&quot;</span>&gt;Login&lt;/button&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <hr />
+        <p>
+            <strong>Problem</strong> : user bisa mendambahkan cookie lewat
+            plug-in : EditThisCookie
+        </p>
+        <p>
+            <strong>Solusi</strong> : mengubah nama cookie jadi acak, seperti
+            memberi lapisan keamanan {cara bagusnya : simpan cookie didatabase}
+        </p>
+        <p><em>login.php</em></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-title function_ invoke__">session_start</span>();
+<span class="hljs-keyword">require</span> <span class="hljs-string">&quot;functions.php&quot;</span>;
+
+<span class="hljs-keyword">if</span>( <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_COOKIE</span>[<span class="hljs-string">&#x27;id&#x27;</span>]) &amp;&amp; <span class="hljs-keyword">isset</span>( <span class="hljs-variable">$_COOKIE</span>[<span class="hljs-string">&#x27;key&#x27;</span>] ) ) {
+    <span class="hljs-variable">$id</span> = <span class="hljs-variable">$_COOKIE</span>[<span class="hljs-string">&#x27;id&#x27;</span>];
+    <span class="hljs-variable">$key</span> = <span class="hljs-variable">$_COOKIE</span>[<span class="hljs-string">&#x27;key&#x27;</span>];
+
+    <span class="hljs-comment">// ambil username berdasarkan id</span>
+    <span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">mysqli_query</span>(<span class="hljs-variable">$conn</span>, <span class="hljs-string">&quot;SELECT username FROM user WHERE id = <span class="hljs-subst">$id</span>&quot;</span>);
+    <span class="hljs-variable">$row</span> = <span class="hljs-title function_ invoke__">mysqli_fetch_assoc</span>(<span class="hljs-variable">$result</span>);
+
+    <span class="hljs-comment">// cek cookie &amp; username</span>
+    <span class="hljs-keyword">if</span>( <span class="hljs-variable">$key</span> === <span class="hljs-title function_ invoke__">hash</span>(<span class="hljs-string">&#x27;sha256&#x27;</span>, <span class="hljs-variable">$row</span>[<span class="hljs-string">&#x27;username&#x27;</span>]) ) {
+        <span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">&#x27;login&#x27;</span>] = <span class="hljs-literal">true</span>;
+    }
+}
+
+<span class="hljs-keyword">if</span>( <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">&quot;login&quot;</span>]) ) {
+    <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&quot;Location: index.php&quot;</span>);
+    <span class="hljs-keyword">exit</span>;
+}
+
+<span class="hljs-keyword">if</span>( <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&quot;login&quot;</span>]) ) {
+    <span class="hljs-variable">$username</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&quot;username&quot;</span>];
+    <span class="hljs-variable">$password</span> = <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&quot;password&quot;</span>];
+
+    <span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">mysqli_query</span>(<span class="hljs-variable">$conn</span>, <span class="hljs-string">&quot;SELECT * FROM user WHERE username = &#x27;<span class="hljs-subst">$username</span>&#x27;&quot;</span>);
+
+    <span class="hljs-comment">// cek username</span>
+    <span class="hljs-keyword">if</span>( <span class="hljs-title function_ invoke__">mysqli_num_rows</span>(<span class="hljs-variable">$result</span>) === <span class="hljs-number">1</span> ) {
+        <span class="hljs-comment">// cek password</span>
+        <span class="hljs-variable">$row</span> = <span class="hljs-title function_ invoke__">mysqli_fetch_assoc</span>(<span class="hljs-variable">$result</span>);
+        <span class="hljs-keyword">if</span>( <span class="hljs-title function_ invoke__">password_verify</span>(<span class="hljs-variable">$password</span>, <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;password&quot;</span>]) ) {
+            <span class="hljs-comment">// set session</span>
+            <span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">&quot;login&quot;</span>] = <span class="hljs-literal">true</span>;
+
+            <span class="hljs-comment">// cek remember me</span>
+            <span class="hljs-keyword">if</span>( <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;remember&#x27;</span>]) ) {
+                <span class="hljs-comment">// buat cookie</span>
+                <span class="hljs-title function_ invoke__">setcookie</span>( <span class="hljs-string">&#x27;id&#x27;</span>, <span class="hljs-variable">$row</span>[<span class="hljs-string">&#x27;id&#x27;</span>], <span class="hljs-title function_ invoke__">time</span>() + <span class="hljs-number">60</span> );
+                <span class="hljs-title function_ invoke__">setcookie</span>(<span class="hljs-string">&#x27;key&#x27;</span>, <span class="hljs-title function_ invoke__">hash</span>(<span class="hljs-string">&#x27;sha256&#x27;</span>, <span class="hljs-variable">$row</span>[<span class="hljs-string">&#x27;username&#x27;</span>]), <span class="hljs-title function_ invoke__">time</span>() + <span class="hljs-number">60</span>);
+            }
+
+            <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&quot;Location: index.php&quot;</span>);
+            <span class="hljs-keyword">exit</span>;
+        }
+    }
+
+    <span class="hljs-variable">$error</span> = <span class="hljs-literal">true</span>;
+}
+
+<span class="hljs-meta">?&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+&lt;head&gt;
+    &lt;title&gt;Login&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Halaman Login&lt;/h1&gt;
+
+    <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">if</span>( <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$error</span>) ) : <span class="hljs-meta">?&gt;</span>
+        &lt;p style=<span class="hljs-string">&quot;color: red; font-style: italic;&quot;</span>&gt;username / password Salah&lt;/p&gt;
+    <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">endif</span>; <span class="hljs-meta">?&gt;</span>
+
+    &lt;form action=<span class="hljs-string">&quot;&quot;</span> method=<span class="hljs-string">&quot;post&quot;</span>&gt;
+        &lt;ul&gt;
+            &lt;li&gt;
+                &lt;label <span class="hljs-keyword">for</span>=<span class="hljs-string">&quot;username&quot;</span>&gt;Username : &lt;/label&gt;
+                &lt;input type=<span class="hljs-string">&quot;text&quot;</span> name=<span class="hljs-string">&quot;username&quot;</span> id=<span class="hljs-string">&quot;username&quot;</span>&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;label <span class="hljs-keyword">for</span>=<span class="hljs-string">&quot;password&quot;</span>&gt;Password : &lt;/label&gt;
+                &lt;input type=<span class="hljs-string">&quot;password&quot;</span> name=<span class="hljs-string">&quot;password&quot;</span> id=<span class="hljs-string">&quot;password&quot;</span>&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;input type=<span class="hljs-string">&quot;checkbox&quot;</span> name=<span class="hljs-string">&quot;remember&quot;</span> id=<span class="hljs-string">&quot;remember&quot;</span>&gt;
+                &lt;label <span class="hljs-keyword">for</span>=<span class="hljs-string">&quot;remember&quot;</span>&gt;Remember me&lt;/label&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;button type=<span class="hljs-string">&quot;submit&quot;</span> name=<span class="hljs-string">&quot;login&quot;</span>&gt;Login&lt;/button&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <hr />
+        <h2 id="menghapus-cookie">Menghapus Cookie</h2>
+        <p>setcookie('id', '', time() - 3600);</p>
+        <p>setcookie('key', '', time() - 3600)</p>
+        <p><em>logout.php</em></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-title function_ invoke__">session_start</span>();
+<span class="hljs-variable">$_SESSION</span> = [];
+<span class="hljs-title function_ invoke__">session_unset</span>();
+<span class="hljs-title function_ invoke__">session_destroy</span>();
+
+<span class="hljs-title function_ invoke__">setcookie</span>(<span class="hljs-string">&#x27;id&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-title function_ invoke__">time</span>() - <span class="hljs-number">3600</span>);
+<span class="hljs-title function_ invoke__">setcookie</span>(<span class="hljs-string">&#x27;key&#x27;</span>, <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-title function_ invoke__">time</span>() - <span class="hljs-number">3600</span>);
+
+<span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&quot;Location: login.php&quot;</span>);
+<span class="hljs-keyword">exit</span>;
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+
+        <script
+            async
+            src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"
+        ></script>
+    </body>
+</html>

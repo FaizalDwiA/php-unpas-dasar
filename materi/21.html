@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Live Search &lpar;AJAX&rpar;</title>
+        <style>
+            /* From extension vscode.github */
+            /*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+            .vscode-dark img[src$="\#gh-light-mode-only"],
+            .vscode-light img[src$="\#gh-dark-mode-only"] {
+                display: none;
+            }
+        </style>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <link rel="stylesheet" href="../asset/css/markdown.min.css" />
+        <link rel="stylesheet" href="../asset/css/highlight.min.css" />
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC",
+                    "Segoe UI", system-ui, "Ubuntu", "Droid Sans", sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+            .task-list-item {
+                list-style-type: none;
+            }
+
+            .task-list-item-checkbox {
+                margin-left: -20px;
+                vertical-align: middle;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="live-search-ajax">Live Search (AJAX)</h1>
+        <hr />
+        <h2 id="pengertian">Pengertian</h2>
+        <ul>
+            <li>
+                Fitur pencarian yang hasilnya ditampilkan secara
+                <strong>langsung</strong>
+            </li>
+            <li>
+                pada saat kita mengetik keyword pencarian datanya
+                <strong>otomatis tampil</strong>
+            </li>
+            <li>menggunakan AJAX</li>
+        </ul>
+        <hr />
+        <h2 id="ajax">AJAX</h2>
+        <ul>
+            <li>Asynchronous Javascript And Xml</li>
+            <li>
+                walaupun disingkatannya ada XML tapi
+                <strong>tidak memakai XML</strong>
+            </li>
+            <li>Asynchronous : tidak sinkron</li>
+        </ul>
+        <hr />
+        <ul>
+            <li>
+                Secara sederhana : pada saat kita mengakses sebuah website, kita
+                punya proses request &amp; respon
+            </li>
+            <li>
+                Pada saat kita mengakses sebuah halaman : kita merequest isi
+                halaman tersebut ke server
+            </li>
+            <li>
+                Pada saat kita mencari : kita merequest ke server, server akan
+                merespon hasil pencariannya
+            </li>
+            <li>
+                Pada saat kita melakukan insert data, kita melakukan request ke
+                server, setelah server mengelola datanya, dia mengembalikan
+                respon
+            </li>
+            <li>
+                Proses request dan respon yang kita lakukan sebelumnya itu kita
+                sebut : syncron
+            </li>
+        </ul>
+        <hr />
+        <ul>
+            <li>
+                kenapa kita sebut syncron : karena ketika meminta sesuatu ke
+                server, dan server mengembalikan hasilnya, maka halamannya itu
+                akan direfresh, seluruh kontennya
+            </li>
+        </ul>
+        <p>[butuh gambar]</p>
+        <hr />
+        <h2 id="object-ajax">Object AJAX</h2>
+        <p>
+            <strong>XMLHttpRequest()</strong> : object yang mengelola request
+            kita menggunakan teknik AJAX
+        </p>
+        <p>Untuk menjalankan AJAX : butuh Triger</p>
+        <hr />
+        <h2 id="triger">Triger</h2>
+        <p>
+            Triger : sebuah aksi yang kita lakukan, untuk menjalankan AJAX {kita
+            mencek sebuah tombol, mengganti sebuah element, menuliskan sesuatu
+            diinput, meload halaman}
+        </p>
+        <hr />
+        <p>
+            kita harus yakin ajax nya siap, dengan menentukan sumber datanya,
+            sumbernya harus siap merespon
+        </p>
+        <hr />
+        <h2 id="readstate">Readstate</h2>
+        <p>nilainya : 0 - 4</p>
+        <p>0 : inisialisasi, 1 : mulai membuka koneksi</p>
+        <p>4 : sumbernya sudah ready</p>
+        <p>status sumbernya 200 : ok</p>
+        <p>404 : sumbernya tidak ada, file not found</p>
+        <h3 id="untuk-melihatnya-bisa-">Untuk Melihatnya Bisa :</h3>
+        <ol>
+            <li>Masuk inspect {F12}</li>
+            <li>Kebagian network</li>
+            <li>Headers</li>
+        </ol>
+        <hr />
+        <h2 id="eksekusi-ajax">Eksekusi Ajax</h2>
+        <p>
+            xhr.open(method{get / post}, {sumber data}, {mau syncronous = false
+            / asynchronous = true})
+        </p>
+        <hr />
+        <p>xhr.send(); : menjalankan AJAX</p>
+        <hr />
+        <p>xhr.responseText : berisi apapun isi dari sumbernya</p>
+        <p><em>index.php</em></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-title function_ invoke__">session_start</span>();
+
+<span class="hljs-keyword">if</span>( !<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">&quot;login&quot;</span>]) ) {
+    <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&quot;Location: login.php&quot;</span>);
+    <span class="hljs-keyword">exit</span>;
+}
+
+<span class="hljs-keyword">require</span> <span class="hljs-string">&#x27;functions.php&#x27;</span>;
+<span class="hljs-variable">$mahasiswa</span> = <span class="hljs-title function_ invoke__">query</span>(<span class="hljs-string">&quot;SELECT * FROM mahasiswa&quot;</span>);
+
+<span class="hljs-comment">// tombol cari ditekan</span>
+<span class="hljs-keyword">if</span>( <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&quot;cari&quot;</span>]) ) {
+    <span class="hljs-variable">$mahasiswa</span> = <span class="hljs-title function_ invoke__">cari</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&quot;keyword&quot;</span>]);
+}
+<span class="hljs-meta">?&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+&lt;head&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+    &lt;style&gt;
+        img {
+            width: <span class="hljs-number">50</span>px;
+            height: <span class="hljs-number">50</span>px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;a href=<span class="hljs-string">&quot;logout.php&quot;</span>&gt;Logout&lt;/a&gt;
+
+    &lt;h1&gt;Daftar Mahasiswa&lt;/h1&gt;
+
+    &lt;a href=<span class="hljs-string">&quot;tambah.php&quot;</span>&gt;Tambah data mahasiswa&lt;/a&gt;
+    &lt;br&gt;&lt;br&gt;
+
+    &lt;form action=<span class="hljs-string">&quot;&quot;</span> method=<span class="hljs-string">&quot;post&quot;</span>&gt;
+        &lt;input type=<span class="hljs-string">&quot;text&quot;</span> name=<span class="hljs-string">&quot;keyword&quot;</span> size=<span class="hljs-string">&quot;40&quot;</span> autofocus placeholder=<span class="hljs-string">&quot;masukkan keyword pencarian&quot;</span> autocomplete=<span class="hljs-string">&quot;off&quot;</span> id=<span class="hljs-string">&quot;keyword&quot;</span>&gt;
+        &lt;button type=<span class="hljs-string">&quot;submit&quot;</span> name=<span class="hljs-string">&quot;cari&quot;</span> id=<span class="hljs-string">&quot;tombol-cari&quot;</span>&gt;Cari!&lt;/button&gt;
+    &lt;/form&gt;
+
+    &lt;br&gt;
+    &lt;div id=<span class="hljs-string">&quot;container&quot;</span>&gt;
+        &lt;table border=<span class="hljs-string">&quot;1&quot;</span> cellpadding=<span class="hljs-string">&quot;10&quot;</span> cellspacing=<span class="hljs-string">&quot;0&quot;</span>&gt;
+            &lt;tr&gt;
+                &lt;th&gt;No.&lt;/th&gt;
+                &lt;th&gt;Aksi&lt;/th&gt;
+                &lt;th&gt;Gambar&lt;/th&gt;
+                &lt;th&gt;Nim&lt;/th&gt;
+                &lt;th&gt;Nama&lt;/th&gt;
+                &lt;th&gt;Email&lt;/th&gt;
+                &lt;th&gt;Jurusan&lt;/th&gt;
+            &lt;/tr&gt;
+
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-variable">$i</span> = <span class="hljs-number">1</span>; <span class="hljs-meta">?&gt;</span>
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">foreach</span>( <span class="hljs-variable">$mahasiswa</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$row</span> ) : <span class="hljs-meta">?&gt;</span>
+            &lt;tr&gt;
+                &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$i</span>; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;a href=<span class="hljs-string">&quot;ubah.php?id=&lt;?= <span class="hljs-subst">$row</span>[&quot;</span>id<span class="hljs-string">&quot;]; ?&gt;&quot;</span>&gt;Ubah&lt;/a&gt; |
+                    &lt;a href=<span class="hljs-string">&quot;hapus.php?id=&lt;?= <span class="hljs-subst">$row</span>[&quot;</span>id<span class="hljs-string">&quot;]; ?&gt;&quot;</span> onclick=<span class="hljs-string">&quot;return confirm(&#x27;yakin?&#x27;)&quot;</span>&gt;Hapus&lt;/a&gt;
+                &lt;/td&gt;
+                &lt;td&gt;&lt;img src=<span class="hljs-string">&quot;img/&lt;?= <span class="hljs-subst">$row</span>[&quot;</span>gambar<span class="hljs-string">&quot;]; ?&gt;&quot;</span>&gt;&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;nim&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;nama&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;email&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;jurusan&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+            &lt;/tr&gt;
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-variable">$i</span>++; <span class="hljs-meta">?&gt;</span>
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">endforeach</span>; <span class="hljs-meta">?&gt;</span>
+        &lt;/table&gt;
+    &lt;/div&gt;
+    &lt;script src=<span class="hljs-string">&quot;java.js&quot;</span>&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><em>java.js</em></p>
+        <pre><code class="language-php"><span class="hljs-comment">// ambil elemen2 yang dibutuhkan</span>
+<span class="hljs-keyword">var</span> keyword = document.<span class="hljs-title function_ invoke__">getElementById</span>(<span class="hljs-string">&#x27;keyword&#x27;</span>);
+<span class="hljs-keyword">var</span> tombolCari = document.<span class="hljs-title function_ invoke__">getElementById</span>(<span class="hljs-string">&#x27;tombol-cari&#x27;</span>);
+<span class="hljs-keyword">var</span> container = document.<span class="hljs-title function_ invoke__">getElementById</span>(<span class="hljs-string">&#x27;container&#x27;</span>);
+
+keyword.<span class="hljs-title function_ invoke__">addEventListener</span>(<span class="hljs-string">&#x27;keyup&#x27;</span>, function() {
+    <span class="hljs-comment">// buat object AJAX</span>
+    <span class="hljs-comment">// biasanya object ajax itu : xhr / ajax</span>
+    <span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>();
+
+    <span class="hljs-comment">// mengecek kesiapan AJAX</span>
+    <span class="hljs-comment">// kita harus yakin ajax nya siap, dengan menentukan sumber datanya, sumbernya harus siap merespon</span>
+    xhr.onreadystatechange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-comment">// readState nilainya : 0 - 4</span>
+        <span class="hljs-comment">// 0 : inisialisasi, 1 : mulai membuka koneksi</span>
+        <span class="hljs-comment">// 4 : sumbernya sudah ready</span>
+
+        <span class="hljs-comment">// status sumbernya 200 : ok</span>
+        <span class="hljs-comment">// 404 : sumbernya tidak ada, file not found</span>
+        <span class="hljs-keyword">if</span>(xhr.readyState == <span class="hljs-number">4</span> &amp;&amp; xhr.status == <span class="hljs-number">200</span>) {
+            container.innerHTML = xhr.responseText;
+        }
+    }
+
+    <span class="hljs-comment">// eksekusi ajax</span>
+    xhr.<span class="hljs-title function_ invoke__">open</span>(<span class="hljs-string">&#x27;GET&#x27;</span>, <span class="hljs-string">&#x27;ajax/coba.txt&#x27;</span>, <span class="hljs-literal">true</span>);
+    xhr.<span class="hljs-title function_ invoke__">send</span>();
+});
+</code></pre>
+        <hr />
+        <h2 id="hubungkan-dengan-file-php">Hubungkan Dengan File Php</h2>
+        <p><em>java.js</em></p>
+        <pre><code class="language-php"><span class="hljs-comment">// ambil elemen2 yang dibutuhkan</span>
+<span class="hljs-keyword">var</span> keyword = document.<span class="hljs-title function_ invoke__">getElementById</span>(<span class="hljs-string">&#x27;keyword&#x27;</span>);
+<span class="hljs-keyword">var</span> tombolCari = document.<span class="hljs-title function_ invoke__">getElementById</span>(<span class="hljs-string">&#x27;tombol-cari&#x27;</span>);
+<span class="hljs-keyword">var</span> container = document.<span class="hljs-title function_ invoke__">getElementById</span>(<span class="hljs-string">&#x27;container&#x27;</span>);
+
+keyword.<span class="hljs-title function_ invoke__">addEventListener</span>(<span class="hljs-string">&#x27;keyup&#x27;</span>, function() {
+    <span class="hljs-comment">// buat object AJAX</span>
+    <span class="hljs-comment">// biasanya object ajax itu : xhr / ajax</span>
+    <span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>();
+
+    <span class="hljs-comment">// mengecek kesiapan AJAX</span>
+    <span class="hljs-comment">// kita harus yakin ajax nya siap, dengan menentukan sumber datanya, sumbernya harus siap merespon</span>
+    xhr.onreadystatechange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-comment">// readState nilainya : 0 - 4</span>
+        <span class="hljs-comment">// 0 : inisialisasi, 1 : mulai membuka koneksi</span>
+        <span class="hljs-comment">// 4 : sumbernya sudah ready</span>
+
+        <span class="hljs-comment">// status sumbernya 200 : ok</span>
+        <span class="hljs-comment">// 404 : sumbernya tidak ada, file not found</span>
+        <span class="hljs-keyword">if</span>(xhr.readyState == <span class="hljs-number">4</span> &amp;&amp; xhr.status == <span class="hljs-number">200</span>) {
+            container.innerHTML = xhr.responseText;
+        }
+    }
+
+    <span class="hljs-comment">// eksekusi ajax</span>
+    xhr.<span class="hljs-title function_ invoke__">open</span>(<span class="hljs-string">&#x27;GET&#x27;</span>, <span class="hljs-string">&#x27;ajax/mahasiswa.php&#x27;</span>, <span class="hljs-literal">true</span>);
+    xhr.<span class="hljs-title function_ invoke__">send</span>();
+});
+</code></pre>
+        <p><em>mahasiswa.php</em></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-keyword">require</span> <span class="hljs-string">&#x27;../functions.php&#x27;</span>;
+<span class="hljs-variable">$query</span> = <span class="hljs-string">&quot;SELECT * FROM mahasiswa&quot;</span>;
+<span class="hljs-variable">$mahasiswa</span> = <span class="hljs-title function_ invoke__">query</span>(<span class="hljs-variable">$query</span>);
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$mahasiswa</span>);
+
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><em>java.js</em></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-keyword">require</span> <span class="hljs-string">&#x27;../functions.php&#x27;</span>;
+<span class="hljs-variable">$query</span> = <span class="hljs-string">&quot;SELECT * FROM mahasiswa&quot;</span>;
+<span class="hljs-variable">$mahasiswa</span> = <span class="hljs-title function_ invoke__">query</span>(<span class="hljs-variable">$query</span>);
+
+<span class="hljs-meta">?&gt;</span>
+
+&lt;table border=<span class="hljs-string">&quot;1&quot;</span> cellpadding=<span class="hljs-string">&quot;10&quot;</span> cellspacing=<span class="hljs-string">&quot;0&quot;</span>&gt;
+    &lt;tr&gt;
+        &lt;th&gt;No.&lt;/th&gt;
+        &lt;th&gt;Aksi&lt;/th&gt;
+        &lt;th&gt;Gambar&lt;/th&gt;
+        &lt;th&gt;Nim&lt;/th&gt;
+        &lt;th&gt;Nama&lt;/th&gt;
+        &lt;th&gt;Email&lt;/th&gt;
+        &lt;th&gt;Jurusan&lt;/th&gt;
+    &lt;/tr&gt;
+
+    <span class="hljs-meta">&lt;?php</span> <span class="hljs-variable">$i</span> = <span class="hljs-number">1</span>; <span class="hljs-meta">?&gt;</span>
+    <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">foreach</span>( <span class="hljs-variable">$mahasiswa</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$row</span> ) : <span class="hljs-meta">?&gt;</span>
+    &lt;tr&gt;
+        &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$i</span>; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+        &lt;td&gt;
+            &lt;a href=<span class="hljs-string">&quot;ubah.php?id=&lt;?= <span class="hljs-subst">$row</span>[&quot;</span>id<span class="hljs-string">&quot;]; ?&gt;&quot;</span>&gt;Ubah&lt;/a&gt; |
+            &lt;a href=<span class="hljs-string">&quot;hapus.php?id=&lt;?= <span class="hljs-subst">$row</span>[&quot;</span>id<span class="hljs-string">&quot;]; ?&gt;&quot;</span> onclick=<span class="hljs-string">&quot;return confirm(&#x27;yakin?&#x27;)&quot;</span>&gt;Hapus&lt;/a&gt;
+        &lt;/td&gt;
+        &lt;td&gt;&lt;img src=<span class="hljs-string">&quot;img/&lt;?= <span class="hljs-subst">$row</span>[&quot;</span>gambar<span class="hljs-string">&quot;]; ?&gt;&quot;</span>&gt;&lt;/td&gt;
+        &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;nim&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+        &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;nama&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+        &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;email&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+        &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;jurusan&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+    &lt;/tr&gt;
+    <span class="hljs-meta">&lt;?php</span> <span class="hljs-variable">$i</span>++; <span class="hljs-meta">?&gt;</span>
+    <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">endforeach</span>; <span class="hljs-meta">?&gt;</span>
+&lt;/table&gt;
+</code></pre>
+        <hr />
+        <h2 id="tambakan-keyword-dijs">Tambakan Keyword Dijs</h2>
+        <p><em>java.js</em></p>
+        <pre><code class="language-php"><span class="hljs-comment">// ambil elemen2 yang dibutuhkan</span>
+<span class="hljs-keyword">var</span> keyword = document.<span class="hljs-title function_ invoke__">getElementById</span>(<span class="hljs-string">&#x27;keyword&#x27;</span>);
+<span class="hljs-keyword">var</span> tombolCari = document.<span class="hljs-title function_ invoke__">getElementById</span>(<span class="hljs-string">&#x27;tombol-cari&#x27;</span>);
+<span class="hljs-keyword">var</span> container = document.<span class="hljs-title function_ invoke__">getElementById</span>(<span class="hljs-string">&#x27;container&#x27;</span>);
+
+keyword.<span class="hljs-title function_ invoke__">addEventListener</span>(<span class="hljs-string">&#x27;keyup&#x27;</span>, function() {
+    <span class="hljs-comment">// buat object AJAX</span>
+    <span class="hljs-comment">// biasanya object ajax itu : xhr / ajax</span>
+    <span class="hljs-keyword">var</span> xhr = <span class="hljs-keyword">new</span> <span class="hljs-title class_">XMLHttpRequest</span>();
+
+    <span class="hljs-comment">// mengecek kesiapan AJAX</span>
+    <span class="hljs-comment">// kita harus yakin ajax nya siap, dengan menentukan sumber datanya, sumbernya harus siap merespon</span>
+    xhr.onreadystatechange = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-comment">// readState nilainya : 0 - 4</span>
+        <span class="hljs-comment">// 0 : inisialisasi, 1 : mulai membuka koneksi</span>
+        <span class="hljs-comment">// 4 : sumbernya sudah ready</span>
+
+        <span class="hljs-comment">// status sumbernya 200 : ok</span>
+        <span class="hljs-comment">// 404 : sumbernya tidak ada, file not found</span>
+        <span class="hljs-keyword">if</span>(xhr.readyState == <span class="hljs-number">4</span> &amp;&amp; xhr.status == <span class="hljs-number">200</span>) {
+            container.innerHTML = xhr.responseText;
+        }
+    }
+
+    <span class="hljs-comment">// eksekusi ajax</span>
+    xhr.<span class="hljs-title function_ invoke__">open</span>(<span class="hljs-string">&#x27;GET&#x27;</span>, <span class="hljs-string">&#x27;ajax/mahasiswa.php?keyword=&#x27;</span> + keyword.value, <span class="hljs-literal">true</span>);
+    xhr.<span class="hljs-title function_ invoke__">send</span>();
+});
+</code></pre>
+        <p><em>mahasiswa.php</em></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-keyword">require</span> <span class="hljs-string">&#x27;../functions.php&#x27;</span>;
+
+<span class="hljs-variable">$keyword</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;keyword&quot;</span>];
+
+<span class="hljs-variable">$query</span> = <span class="hljs-string">&quot;SELECT * FROM mahasiswa
+            WHERE
+                nama LIKE &#x27;%<span class="hljs-subst">$keyword</span>%&#x27; OR
+                nim LIKE &#x27;%<span class="hljs-subst">$keyword</span>%&#x27; OR
+                email LIKE &#x27;%<span class="hljs-subst">$keyword</span>%&#x27; OR
+                jurusan LIKE &#x27;%<span class="hljs-subst">$keyword</span>%&#x27;
+        &quot;</span>;
+<span class="hljs-variable">$mahasiswa</span> = <span class="hljs-title function_ invoke__">query</span>(<span class="hljs-variable">$query</span>);
+
+<span class="hljs-meta">?&gt;</span>
+
+&lt;table border=<span class="hljs-string">&quot;1&quot;</span> cellpadding=<span class="hljs-string">&quot;10&quot;</span> cellspacing=<span class="hljs-string">&quot;0&quot;</span>&gt;
+    &lt;tr&gt;
+        &lt;th&gt;No.&lt;/th&gt;
+        &lt;th&gt;Aksi&lt;/th&gt;
+        &lt;th&gt;Gambar&lt;/th&gt;
+        &lt;th&gt;Nim&lt;/th&gt;
+        &lt;th&gt;Nama&lt;/th&gt;
+        &lt;th&gt;Email&lt;/th&gt;
+        &lt;th&gt;Jurusan&lt;/th&gt;
+    &lt;/tr&gt;
+
+    <span class="hljs-meta">&lt;?php</span> <span class="hljs-variable">$i</span> = <span class="hljs-number">1</span>; <span class="hljs-meta">?&gt;</span>
+    <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">foreach</span>( <span class="hljs-variable">$mahasiswa</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$row</span> ) : <span class="hljs-meta">?&gt;</span>
+    &lt;tr&gt;
+        &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$i</span>; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+        &lt;td&gt;
+            &lt;a href=<span class="hljs-string">&quot;ubah.php?id=&lt;?= <span class="hljs-subst">$row</span>[&quot;</span>id<span class="hljs-string">&quot;]; ?&gt;&quot;</span>&gt;Ubah&lt;/a&gt; |
+            &lt;a href=<span class="hljs-string">&quot;hapus.php?id=&lt;?= <span class="hljs-subst">$row</span>[&quot;</span>id<span class="hljs-string">&quot;]; ?&gt;&quot;</span> onclick=<span class="hljs-string">&quot;return confirm(&#x27;yakin?&#x27;)&quot;</span>&gt;Hapus&lt;/a&gt;
+        &lt;/td&gt;
+        &lt;td&gt;&lt;img src=<span class="hljs-string">&quot;img/&lt;?= <span class="hljs-subst">$row</span>[&quot;</span>gambar<span class="hljs-string">&quot;]; ?&gt;&quot;</span>&gt;&lt;/td&gt;
+        &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;nim&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+        &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;nama&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+        &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;email&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+        &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;jurusan&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+    &lt;/tr&gt;
+    <span class="hljs-meta">&lt;?php</span> <span class="hljs-variable">$i</span>++; <span class="hljs-meta">?&gt;</span>
+    <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">endforeach</span>; <span class="hljs-meta">?&gt;</span>
+&lt;/table&gt;
+</code></pre>
+
+        <script
+            async
+            src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"
+        ></script>
+    </body>
+</html>

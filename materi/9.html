@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Get &amp; Post</title>
+        <style>
+            /* From extension vscode.github */
+            /*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+            .vscode-dark img[src$="\#gh-light-mode-only"],
+            .vscode-light img[src$="\#gh-dark-mode-only"] {
+                display: none;
+            }
+        </style>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <link rel="stylesheet" href="../asset/css/markdown.min.css" />
+        <link rel="stylesheet" href="../asset/css/highlight.min.css" />
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC",
+                    "Segoe UI", system-ui, "Ubuntu", "Droid Sans", sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+            .task-list-item {
+                list-style-type: none;
+            }
+
+            .task-list-item-checkbox {
+                margin-left: -20px;
+                vertical-align: middle;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="get--post">Get &amp; Post</h1>
+        <h2 id="request-method">Request Method</h2>
+        <p>get &amp; post</p>
+        <hr />
+        <h2 id="variable-scope">Variable Scope</h2>
+        <ul>
+            <li>
+                <p>lingkup variable</p>
+            </li>
+            <li>
+                <p>membuat variable khusus untuk dalam file</p>
+            </li>
+            <li>
+                <p>variable local untuk file tersebut</p>
+            </li>
+        </ul>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$x</span> = <span class="hljs-number">10</span>;
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$x</span>;
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\9\1.PNG" alt="1" /></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$x</span> = <span class="hljs-number">10</span>;
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tampilX</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">echo</span> <span class="hljs-variable">$x</span>;
+    }
+
+    <span class="hljs-title function_ invoke__">tampilX</span>();
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\9\2.PNG" alt="2" /></p>
+        <p>karena tidak mengenali variable x</p>
+        <p>
+            karena lingkup variable x yang ada didalam function, itu beda dengan
+            variable yang ada diluar function, meskipun nama sama tapi berbeda
+        </p>
+        <p>
+            karena variable yang kita buat didalam function itu hanya berlaku
+            didalam function saja
+        </p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$x</span> = <span class="hljs-number">10</span>;
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tampilX</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">echo</span> <span class="hljs-variable">$x</span>;
+    }
+
+    <span class="hljs-title function_ invoke__">tampilX</span>();
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$x</span>;
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\9\3.PNG" alt="3" /></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$x</span> = <span class="hljs-number">10</span>;
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tampilX</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-variable">$x</span> = <span class="hljs-number">20</span>;
+        <span class="hljs-keyword">echo</span> <span class="hljs-variable">$x</span>;
+    }
+
+    <span class="hljs-title function_ invoke__">tampilX</span>();
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$x</span>;
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\9\4.PNG" alt="4" /></p>
+        <ul>
+            <li>variable nilai 10 itu untuk variable lokal diluar function</li>
+            <li>variable nilai 20 itu untuk variable lokal didalam function</li>
+        </ul>
+        <hr />
+        <h2 id="memberi-keyword-global">Memberi Keyword Global</h2>
+        <p>untuk mendapatkan nilai variable diluar function</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$x</span> = <span class="hljs-number">10</span>;
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">tampilX</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">global</span> <span class="hljs-variable">$x</span>;
+        <span class="hljs-keyword">echo</span> <span class="hljs-variable">$x</span>;
+    }
+
+    <span class="hljs-title function_ invoke__">tampilX</span>();
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\9\1.PNG" alt="1" /></p>
+        <hr />
+        <h2 id="superglobals">Superglobals</h2>
+        <ul>
+            <li>
+                variable2 yang sudah dimiliki oleh PHP yang bisa kita akses
+                dimanapun &amp; kapanpun dihalaman PHP
+                <ul>
+                    <li>$_GET</li>
+                    <li>$_POST</li>
+                    <li>$_REQUEST</li>
+                    <li>$_SESSION</li>
+                    <li>$_COOKIE</li>
+                    <li>$_SERVER</li>
+                    <li>$_ENV</li>
+                </ul>
+            </li>
+            <li>semuanya adalah array assosiative</li>
+            <li>variable global milik PHP</li>
+        </ul>
+        <hr />
+        <h2 id="_get">$_GET</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$_GET</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\9\5.PNG" alt="5" /></p>
+        <blockquote>
+            <p>isinya kosong</p>
+        </blockquote>
+        <hr />
+        <h2 id="_post">$_POST</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$_POST</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\9\5.PNG" alt="5" /></p>
+        <blockquote>
+            <p>isinya kosong</p>
+        </blockquote>
+        <hr />
+        <h2 id="_server">$_SERVER</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$_SERVER</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\9\6.PNG" alt="6" /></p>
+        <hr />
+        <h2 id="_serverserver_name">$_SERVER[&quot;SERVER_NAME&quot;]</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$_SERVER</span>[<span class="hljs-string">&quot;SERVER_NAME&quot;</span>];
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\9\7.PNG" alt="7" /></p>
+        <hr />
+        <h2 id="memasukkan-data-ke-array-assosiative-dengan-get">
+            Memasukkan Data Ke Array Assosiative Dengan Get
+        </h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;nama&quot;</span>] = <span class="hljs-string">&quot;Faizal Dwi Al Farizi&quot;</span>;
+    <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;nim&quot;</span>] = <span class="hljs-string">&quot;B21055&quot;</span>;
+    <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$_GET</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\9\8.PNG" alt="8" /></p>
+        <hr />
+        <h2 id="memasukkan-data-lewat-url-diget">
+            Memasukkan Data Lewat Url Diget
+        </h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$_GET</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p>ketik diURL dipaling ujung : ?nama=Faizal Dwi</p>
+        <p>
+            ? bacanya : &quot;sekarang saya akan memasukan data kehalaman
+            ini&quot;
+        </p>
+        <p>masukan kemana ? : kedalam $_GET</p>
+        <p>key-nya : nama</p>
+        <p>value : Faizal%20Dwi</p>
+        <p>kedalam variable $_GET</p>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\9\9.PNG" alt="9" /></p>
+        <hr />
+        <h2 id="menambahkan-data">Menambahkan Data</h2>
+        <p>&amp;</p>
+        <pre><code class="language-url">// URL
+http://localhost/phpdasar/pertemuan7/?nama=Faizal%20Dwi&amp;nim=B21055
+</code></pre>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$_GET</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\9\10.PNG" alt="10" /></p>
+        <blockquote>
+            <p>
+                Mengirimkan data menggunakan metode request get, akan ditangkap
+                oleh variable superglobal $_GET
+            </p>
+        </blockquote>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-variable">$mahasiswa</span> = [
+    [
+        <span class="hljs-string">&quot;nama&quot;</span> =&gt; <span class="hljs-string">&quot;Faizal&quot;</span>,
+        <span class="hljs-string">&quot;nim&quot;</span> =&gt; <span class="hljs-string">&quot;B21055&quot;</span>,
+        <span class="hljs-string">&quot;email&quot;</span> =&gt; <span class="hljs-string">&quot;faizal@gmail.com&quot;</span>,
+        <span class="hljs-string">&quot;jurusan&quot;</span> =&gt; <span class="hljs-string">&quot;Sistem Informasi&quot;</span>,
+        <span class="hljs-string">&quot;gambar&quot;</span> =&gt; <span class="hljs-string">&quot;img1.jpg&quot;</span>
+    ],
+    [
+        <span class="hljs-string">&quot;nama&quot;</span> =&gt; <span class="hljs-string">&quot;Dwi&quot;</span>,
+        <span class="hljs-string">&quot;nim&quot;</span> =&gt; <span class="hljs-string">&quot;B21056&quot;</span>,
+        <span class="hljs-string">&quot;email&quot;</span> =&gt; <span class="hljs-string">&quot;dwi@gmail.com&quot;</span>,
+        <span class="hljs-string">&quot;jurusan&quot;</span> =&gt; <span class="hljs-string">&quot;Sistem Informasi&quot;</span>,
+        <span class="hljs-string">&quot;gambar&quot;</span> =&gt; <span class="hljs-string">&quot;img2.jpg&quot;</span>
+    ],
+]
+<span class="hljs-meta">?&gt;</span>
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;GET&lt;/title&gt;
+        &lt;style&gt;
+            img {
+                width: <span class="hljs-number">100</span>px;
+                height: <span class="hljs-number">100</span>px;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Daftar Mahasiswa&lt;/h1&gt;
+        <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">foreach</span>( <span class="hljs-variable">$mahasiswa</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$mhs</span> ) : <span class="hljs-meta">?&gt;</span>
+        &lt;ul&gt;
+            &lt;li&gt;&lt;img src=<span class="hljs-string">&quot;../img/&lt;?= <span class="hljs-subst">$mhs</span>[&quot;</span>gambar<span class="hljs-string">&quot;]; ?&gt;&quot;</span>&gt;&lt;/li&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$mhs</span>[<span class="hljs-string">&quot;nama&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$mhs</span>[<span class="hljs-string">&quot;nim&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+        &lt;/ul&gt;
+        <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">endforeach</span>; <span class="hljs-meta">?&gt;</span>
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><img src="file:///d:\Project\php\asset\img\9\11.PNG" alt="11" /></p>
+        <p><em>index.php</em></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-variable">$mahasiswa</span> = [
+    [
+        <span class="hljs-string">&quot;nama&quot;</span> =&gt; <span class="hljs-string">&quot;Faizal&quot;</span>,
+        <span class="hljs-string">&quot;nim&quot;</span> =&gt; <span class="hljs-string">&quot;B21055&quot;</span>,
+        <span class="hljs-string">&quot;email&quot;</span> =&gt; <span class="hljs-string">&quot;faizal@gmail.com&quot;</span>,
+        <span class="hljs-string">&quot;jurusan&quot;</span> =&gt; <span class="hljs-string">&quot;Sistem Informasi&quot;</span>,
+        <span class="hljs-string">&quot;gambar&quot;</span> =&gt; <span class="hljs-string">&quot;img1.jpg&quot;</span>
+    ],
+    [
+        <span class="hljs-string">&quot;nama&quot;</span> =&gt; <span class="hljs-string">&quot;Dwi&quot;</span>,
+        <span class="hljs-string">&quot;nim&quot;</span> =&gt; <span class="hljs-string">&quot;B21056&quot;</span>,
+        <span class="hljs-string">&quot;email&quot;</span> =&gt; <span class="hljs-string">&quot;dwi@gmail.com&quot;</span>,
+        <span class="hljs-string">&quot;jurusan&quot;</span> =&gt; <span class="hljs-string">&quot;Sistem Informasi&quot;</span>,
+        <span class="hljs-string">&quot;gambar&quot;</span> =&gt; <span class="hljs-string">&quot;img2.jpg&quot;</span>
+    ],
+]
+<span class="hljs-meta">?&gt;</span>
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+&lt;head&gt;
+    &lt;title&gt;GET&lt;/title&gt;
+    &lt;style&gt;
+        img {
+            width: <span class="hljs-number">100</span>px;
+            height: <span class="hljs-number">100</span>px;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Daftar Mahasiswa&lt;/h1&gt;
+    &lt;ul&gt;
+        <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">foreach</span>( <span class="hljs-variable">$mahasiswa</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$mhs</span> ) : <span class="hljs-meta">?&gt;</span>
+            &lt;li&gt;
+                &lt;a href=<span class="hljs-string">&quot;latihan2.php?nama=&lt;?= <span class="hljs-subst">$mhs</span>[&quot;</span>nama<span class="hljs-string">&quot;]; ?&gt;&amp;nim=&lt;?= <span class="hljs-subst">$mhs</span>[&quot;</span>nim<span class="hljs-string">&quot;]; ?&gt;&amp;email=&lt;?= <span class="hljs-subst">$mhs</span>[&quot;</span>email<span class="hljs-string">&quot;]; ?&gt;&amp;jurusan=&lt;?= <span class="hljs-subst">$mhs</span>[&quot;</span>jurusan<span class="hljs-string">&quot;]; ?&gt;&amp;gambar=&lt;?= <span class="hljs-subst">$mhs</span>[&quot;</span>gambar<span class="hljs-string">&quot;]; ?&gt;&quot;</span>&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$mhs</span>[<span class="hljs-string">&quot;nama&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/a&gt;
+            &lt;/li&gt;
+        <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">endforeach</span>; <span class="hljs-meta">?&gt;</span>
+    &lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><em>latihan2.php</em></p>
+        <pre><code class="language-php">&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Detail Mahasiswa&lt;/title&gt;
+        &lt;style&gt;
+            img {
+                width: <span class="hljs-number">100</span>px;
+                height: <span class="hljs-number">100</span>px;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;img src=<span class="hljs-string">&quot;../img/&lt;?= <span class="hljs-subst">$_GET</span>[&quot;</span>gambar<span class="hljs-string">&quot;]; ?&gt;&quot;</span>&gt;&lt;/li&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;nama&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;nim&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;email&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;jurusan&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+        &lt;/ul&gt;
+
+        &lt;a href=<span class="hljs-string">&quot;index.php&quot;</span>&gt;Kembali ke daftar mahasiswa&lt;/a&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <h3 id="pencegahan-untuk-hacker">Pencegahan Untuk Hacker</h3>
+        <p>ketika user masuk lewat URL tanpa pencet link</p>
+        <p><em>dilatihan2.php</em></p>
+        <p>
+            <a href="http://localhost/phpdasar/pertemuan7/latihan2.php"
+                >http://localhost/phpdasar/pertemuan7/latihan2.php</a
+            >
+        </p>
+        <ul>
+            <li>
+                isset() : untuk mengecek apakah sebuah variable itu sudah pernah
+                dibikin / belum
+            </li>
+            <li>
+                error ketika masuk lewat URL latihan2.php : karena $_GET, key
+                nama belum pernah dibikin tapi berusaha dicetak
+            </li>
+        </ul>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// cek apakah tidak ada data di$_GET</span>
+<span class="hljs-keyword">if</span>( <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;nama&quot;</span>]) ) {
+
+}
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p>
+            Artinya : apakah $_GET[&quot;nama&quot;] sudah pernah dibikin /
+            belum
+        </p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// cek apakah tidak ada data di$_GET</span>
+<span class="hljs-keyword">if</span>( !<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;nama&quot;</span>]) ) {
+
+}
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p>Artinya : apakah $_GET[&quot;nama&quot;] belum dibikin / belum</p>
+        <hr />
+        <h2 id="redirect">Redirect</h2>
+        <p>Memindahkan user dari sebuah halaman kehalaman lain</p>
+        <p>menggunakan header()</p>
+        <p>header(&quot;Location: index.php&quot;)</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// cek apakah tidak ada data di$_GET</span>
+<span class="hljs-keyword">if</span>( !<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;nama&quot;</span>]) ) {
+    <span class="hljs-comment">// redirec</span>
+    <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&quot;Location: index.php&quot;</span>);
+    <span class="hljs-keyword">exit</span>;
+}
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><em>latihan2.php</em></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// cek apakah tidak ada data di$_GET</span>
+<span class="hljs-keyword">if</span>( !<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;nama&quot;</span>]) ) {
+    <span class="hljs-comment">// redirect</span>
+    <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&quot;Location: index.php&quot;</span>);
+    <span class="hljs-keyword">exit</span>;
+}
+<span class="hljs-meta">?&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Detail Mahasiswa&lt;/title&gt;
+        &lt;style&gt;
+            img {
+                width: <span class="hljs-number">100</span>px;
+                height: <span class="hljs-number">100</span>px;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;img src=<span class="hljs-string">&quot;../img/&lt;?= <span class="hljs-subst">$_GET</span>[&quot;</span>gambar<span class="hljs-string">&quot;]; ?&gt;&quot;</span>&gt;&lt;/li&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;nama&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;nim&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;email&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;jurusan&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+        &lt;/ul&gt;
+
+        &lt;a href=<span class="hljs-string">&quot;index.php&quot;</span>&gt;Kembali ke daftar mahasiswa&lt;/a&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p>Tapi ketika kita isi URLnya dengan input nama masih bisa masuk</p>
+        <p>
+            <a
+                href="http://localhost/phpdasar/pertemuan7/latihan2.php?nama=syiber"
+                >http://localhost/phpdasar/pertemuan7/latihan2.php?nama=syiber</a
+            >
+        </p>
+        <h3 id="solusi">Solusi</h3>
+        <p><em>latihan2.php</em></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// cek apakah tidak ada data di$_GET</span>
+<span class="hljs-keyword">if</span>( !<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;nama&quot;</span>]) ||
+    !<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;nim&quot;</span>]) ||
+    !<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;email&quot;</span>]) ||
+    !<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;jurusan&quot;</span>]) ||
+    !<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;gambar&quot;</span>])) {
+    <span class="hljs-comment">// redirec</span>
+    <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&quot;Location: index.php&quot;</span>);
+    <span class="hljs-keyword">exit</span>;
+}
+<span class="hljs-meta">?&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Detail Mahasiswa&lt;/title&gt;
+        &lt;style&gt;
+            img {
+                width: <span class="hljs-number">100</span>px;
+                height: <span class="hljs-number">100</span>px;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;img src=<span class="hljs-string">&quot;../img/&lt;?= <span class="hljs-subst">$_GET</span>[&quot;</span>gambar<span class="hljs-string">&quot;]; ?&gt;&quot;</span>&gt;&lt;/li&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;nama&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;nim&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;email&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;jurusan&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+        &lt;/ul&gt;
+
+        &lt;a href=<span class="hljs-string">&quot;index.php&quot;</span>&gt;Kembali ke daftar mahasiswa&lt;/a&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <h2 id="post">POST</h2>
+        <p>Datanya lewat : form</p>
+        <p><em>index.php</em></p>
+        <pre><code class="language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>POST<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;index2.php&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span>&gt;</span>
+            Masukkan nama :
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;nama&quot;</span> /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>Kirim<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+        <p><em>index2.php</em></p>
+        <pre><code class="language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>POST<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Selamat Datang, Admin!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+        <h3 id=""><?= $_POST["nama"]; ?></h3>
+        <p><em>index2.php</em></p>
+        <pre><code class="language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>POST<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>
+            Selamat Datang,
+            &lt;?= $_POST[&quot;nama&quot;]; ?&gt;!
+        <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+        <h3 id="kita-ubah-method-ke-get">Kita Ubah Method Ke Get</h3>
+        <p><em>index.php</em></p>
+        <pre><code class="language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>POST<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;index2.php&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;get&quot;</span>&gt;</span>
+            Masukkan nama :
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;nama&quot;</span> /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>Kirim<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\9\12.PNG" alt="12" /></p>
+        <h3 id="jika-action-nya-kosong">jika action nya kosong</h3>
+        <p>maka datanya akan dikirimkan untuk diri sendiri</p>
+        <p><em>index.php</em></p>
+        <pre><code class="language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>POST<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span>&gt;</span>
+            Masukkan nama :
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;nama&quot;</span> /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>Kirim<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+        <hr />
+        <h2 id="kalo-diform-tidak-dikasih-attribute">
+            Kalo Diform Tidak Dikasih Attribute
+        </h2>
+        <p>maka secara default akan menggunakan method get</p>
+        <pre><code class="language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>POST<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">form</span>&gt;</span>
+            Masukkan nama :
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;nama&quot;</span> /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>Kirim<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+        <hr />
+        <h2 id="untuk-cetak-kehalaman-sendiri">
+            Untuk Cetak Kehalaman Sendiri
+        </h2>
+        <p><em>index.php</em></p>
+        <pre><code class="language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>POST<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+        <span class="hljs-meta">&lt;?php if( isset($_POST[&quot;submit&quot;]) ) : ?&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>
+            Halo, Selamat Datang
+            &lt;?= $_POST[&quot;nama&quot;]; ?&gt;
+        <span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+        <span class="hljs-meta">&lt;?php endif; ?&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">form</span> <span class="hljs-attr">action</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-attr">method</span>=<span class="hljs-string">&quot;post&quot;</span>&gt;</span>
+            Masukkan nama :
+            <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;nama&quot;</span> /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">br</span> /&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>Kirim<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+        <hr />
+        <h2 id="program-login">Program Login</h2>
+        <p><em>login.php</em></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// cek apakah tombol submit sudah tekan atau belum</span>
+<span class="hljs-keyword">if</span>( <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&quot;submit&quot;</span>]) ) {
+    <span class="hljs-comment">// cek username &amp; password</span>
+    <span class="hljs-keyword">if</span>( <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&quot;username&quot;</span>] == <span class="hljs-string">&quot;admin&quot;</span> &amp;&amp; <span class="hljs-variable">$_POST</span>[<span class="hljs-string">&quot;password&quot;</span>] == <span class="hljs-string">&quot;123&quot;</span> ){
+        <span class="hljs-comment">// jika benar, redirect kehalaman admin</span>
+        <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&quot;Location: admin.php&quot;</span>);
+        <span class="hljs-keyword">exit</span>;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// jika salah, tampilkan pesan kesalahan</span>
+        <span class="hljs-variable">$error</span> = <span class="hljs-literal">true</span>;
+    }
+}
+<span class="hljs-meta">?&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Login&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Login Admin&lt;/h1&gt;
+
+        <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">if</span>( <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$error</span>) ) : <span class="hljs-meta">?&gt;</span>
+        &lt;p style=<span class="hljs-string">&quot;color: red; font-style: italic;&quot;</span>&gt;
+            username / password salah!
+        &lt;/p&gt;
+        <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">endif</span>; <span class="hljs-meta">?&gt;</span>
+
+        &lt;ul&gt;
+            &lt;form action=<span class="hljs-string">&quot;&quot;</span> method=<span class="hljs-string">&quot;post&quot;</span>&gt;
+                &lt;li&gt;
+                    &lt;label <span class="hljs-keyword">for</span>=<span class="hljs-string">&quot;username&quot;</span>&gt;Username :&lt;/label&gt;
+                    &lt;input type=<span class="hljs-string">&quot;text&quot;</span> name=<span class="hljs-string">&quot;username&quot;</span> id=<span class="hljs-string">&quot;username&quot;</span> /&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;label <span class="hljs-keyword">for</span>=<span class="hljs-string">&quot;password&quot;</span>&gt;Password :&lt;/label&gt;
+                    &lt;input type=<span class="hljs-string">&quot;password&quot;</span> name=<span class="hljs-string">&quot;password&quot;</span> id=<span class="hljs-string">&quot;password&quot;</span> /&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;button type=<span class="hljs-string">&quot;submit&quot;</span> name=<span class="hljs-string">&quot;submit&quot;</span>&gt;Login&lt;/button&gt;
+                &lt;/li&gt;
+            &lt;/form&gt;
+        &lt;/ul&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><em>admin.php</em></p>
+        <pre><code class="language-html"><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;en&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Halaman Admin<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Selamat Datang Admin!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;login.php&quot;</span>&gt;</span>Logout<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</code></pre>
+
+        <script
+            async
+            src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"
+        ></script>
+    </body>
+</html>

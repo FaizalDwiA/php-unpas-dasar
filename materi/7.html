@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Array</title>
+        <style>
+            /* From extension vscode.github */
+            /*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+            .vscode-dark img[src$="\#gh-light-mode-only"],
+            .vscode-light img[src$="\#gh-dark-mode-only"] {
+                display: none;
+            }
+        </style>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <link rel="stylesheet" href="../asset/css/markdown.min.css" />
+        <link rel="stylesheet" href="../asset/css/highlight.min.css" />
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC",
+                    "Segoe UI", system-ui, "Ubuntu", "Droid Sans", sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+            .task-list-item {
+                list-style-type: none;
+            }
+
+            .task-list-item-checkbox {
+                margin-left: -20px;
+                vertical-align: middle;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="array">Array</h1>
+        <h2 id="array-1">Array</h2>
+        <ul>
+            <li>Sebuah variable yang bisa menampung lebih dari 1 nilai</li>
+            <li>Element pada array boleh memiliki tipe data yang berbeda</li>
+            <li>Pasangan antara key &amp; value</li>
+            <li>Key-nya adalah index, yang dimulai dari 0</li>
+        </ul>
+        <hr />
+        <h2 id="membuat-array">Membuat Array</h2>
+        <ul>
+            <li>
+                <p>Cara lama</p>
+                <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$hari</span> = <span class="hljs-keyword">array</span>(<span class="hljs-string">&quot;Senin&quot;</span>, <span class="hljs-string">&quot;Selasa&quot;</span>, <span class="hljs-string">&quot;Rabu&quot;</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+            </li>
+            <li>
+                <p>Cara Baru</p>
+                <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+  <span class="hljs-variable">$bulan</span> = [<span class="hljs-string">&quot;Januari&quot;</span>, <span class="hljs-string">&quot;Februari&quot;</span>, <span class="hljs-string">&quot;Maret&quot;</span>];
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+            </li>
+            <li>
+                <p>Dengan Type Data Yang Berbeda</p>
+                <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$arr1</span> = [<span class="hljs-number">123</span>, <span class="hljs-string">&quot;tulisan&quot;</span>, <span class="hljs-literal">false</span>];
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+            </li>
+        </ul>
+        <hr />
+        <h2 id="menampilkan-array">Menampilkan Array</h2>
+        <p>Jika menggunakan echo akan error</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$arr1</span> = [<span class="hljs-number">123</span>, <span class="hljs-string">&quot;tulisan&quot;</span>, <span class="hljs-literal">false</span>];
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$arr1</span>;
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\7\1.PNG" alt="1" /></p>
+        <hr />
+        <h2 id="solusi--var_dump--print_r">Solusi : var_dump() / print_r()</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$arr1</span> = [<span class="hljs-number">123</span>, <span class="hljs-string">&quot;tulisan&quot;</span>, <span class="hljs-literal">false</span>];
+    <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$arr1</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\7\2.PNG" alt="2" /></p>
+        <hr />
+        <h2 id="menggunakan-print_r--var_dump">
+            Menggunakan print_r &amp; var_dump
+        </h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$hari</span> = <span class="hljs-keyword">array</span>(<span class="hljs-string">&quot;Senin&quot;</span>, <span class="hljs-string">&quot;Selasa&quot;</span>, <span class="hljs-string">&quot;Rabu&quot;</span>);
+    <span class="hljs-variable">$bulan</span> = [<span class="hljs-string">&quot;Jnauari&quot;</span>, <span class="hljs-string">&quot;Februari&quot;</span>, <span class="hljs-string">&quot;Maret&quot;</span>];
+    <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$hari</span>);
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+    <span class="hljs-title function_ invoke__">print_r</span>(<span class="hljs-variable">$bulan</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\7\3.PNG" alt="3" /></p>
+        <hr />
+        <h2 id="menampilkan-1-elemen-pada-array">
+            Menampilkan 1 Elemen Pada Array
+        </h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$arr1</span> = [<span class="hljs-number">123</span>, <span class="hljs-string">&quot;tulisan&quot;</span>, <span class="hljs-literal">false</span>];
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$arr1</span>[<span class="hljs-number">0</span>];
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\7\4.PNG" alt="4" /></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$arr1</span> = [<span class="hljs-number">123</span>, <span class="hljs-string">&quot;tulisan&quot;</span>, <span class="hljs-literal">false</span>];
+    <span class="hljs-variable">$bulan</span> = [<span class="hljs-string">&quot;Januari&quot;</span>, <span class="hljs-string">&quot;Februari&quot;</span>, <span class="hljs-string">&quot;Maret&quot;</span>];
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$arr1</span>[<span class="hljs-number">0</span>];
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+    <span class="hljs-keyword">echo</span> <span class="hljs-variable">$bulan</span>[<span class="hljs-number">1</span>];
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\7\5.PNG" alt="5" /></p>
+        <hr />
+        <h2 id="menambahkan-element-baru-pada-array">
+            Menambahkan Element Baru Pada Array
+        </h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$hari</span> = <span class="hljs-keyword">array</span>(<span class="hljs-string">&quot;Senin&quot;</span>, <span class="hljs-string">&quot;Selasa&quot;</span>, <span class="hljs-string">&quot;Rabu&quot;</span>);
+    <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$hari</span>);
+    <span class="hljs-variable">$hari</span>[] = <span class="hljs-string">&quot;Kamis&quot;</span>;
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+    <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$hari</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\7\6.PNG" alt="6" /></p>
+        <hr />
+        <h2 id="menampilkan-element-pada-user">
+            Menampilkan Element Pada User
+        </h2>
+        <p>for / foreach</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$angka</span> = [<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">15</span>, <span class="hljs-number">20</span>, <span class="hljs-number">11</span>, <span class="hljs-number">77</span>, <span class="hljs-number">89</span>];
+<span class="hljs-meta">?&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Latihan <span class="hljs-number">2</span>&lt;/title&gt;
+        &lt;style&gt;
+            div {
+                width: <span class="hljs-number">50</span>px;
+                height: <span class="hljs-number">50</span>px;
+                background-color: salmon;
+                text-align: center;
+                line-height: <span class="hljs-number">50</span>px;
+                margin: <span class="hljs-number">3</span>px;
+                <span class="hljs-keyword">float</span>: left;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span> = <span class="hljs-number">0</span>; <span class="hljs-variable">$i</span> &lt; <span class="hljs-number">7</span>; <span class="hljs-variable">$i</span>++) { <span class="hljs-meta">?&gt;</span>
+        &lt;div&gt;<span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$angka</span>[<span class="hljs-variable">$i</span>]; <span class="hljs-meta">?&gt;</span>&lt;/div&gt;
+        <span class="hljs-meta">&lt;?php</span> } <span class="hljs-meta">?&gt;</span>
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\7\7.PNG" alt="7" /></p>
+        <hr />
+        <h3 id="supaya-php-menghitung-sendiri-jumlah-element">
+            Supaya php menghitung sendiri jumlah element
+        </h3>
+        <p>menggunakan count()</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$angka</span> = [<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">15</span>, <span class="hljs-number">20</span>, <span class="hljs-number">11</span>, <span class="hljs-number">77</span>, <span class="hljs-number">89</span>, <span class="hljs-number">8</span>];
+<span class="hljs-meta">?&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Latihan <span class="hljs-number">2</span>&lt;/title&gt;
+        &lt;style&gt;
+            div {
+                width: <span class="hljs-number">50</span>px;
+                height: <span class="hljs-number">50</span>px;
+                background-color: salmon;
+                text-align: center;
+                line-height: <span class="hljs-number">50</span>px;
+                margin: <span class="hljs-number">3</span>px;
+                <span class="hljs-keyword">float</span>: left;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span> = <span class="hljs-number">0</span>; <span class="hljs-variable">$i</span> &lt; <span class="hljs-title function_ invoke__">count</span>(<span class="hljs-variable">$angka</span>); <span class="hljs-variable">$i</span>++) { <span class="hljs-meta">?&gt;</span>
+        &lt;div&gt;<span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$angka</span>[<span class="hljs-variable">$i</span>]; <span class="hljs-meta">?&gt;</span>&lt;/div&gt;
+        <span class="hljs-meta">&lt;?php</span> } <span class="hljs-meta">?&gt;</span>
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\7\8.PNG" alt="8" /></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$angka</span> = [<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">15</span>, <span class="hljs-number">20</span>, <span class="hljs-number">11</span>];
+<span class="hljs-meta">?&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Latihan <span class="hljs-number">2</span>&lt;/title&gt;
+        &lt;style&gt;
+            div {
+                width: <span class="hljs-number">50</span>px;
+                height: <span class="hljs-number">50</span>px;
+                background-color: salmon;
+                text-align: center;
+                line-height: <span class="hljs-number">50</span>px;
+                margin: <span class="hljs-number">3</span>px;
+                <span class="hljs-keyword">float</span>: left;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span> = <span class="hljs-number">0</span>; <span class="hljs-variable">$i</span> &lt; <span class="hljs-title function_ invoke__">count</span>(<span class="hljs-variable">$angka</span>); <span class="hljs-variable">$i</span>++) { <span class="hljs-meta">?&gt;</span>
+        &lt;div&gt;<span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$angka</span>[<span class="hljs-variable">$i</span>]; <span class="hljs-meta">?&gt;</span>&lt;/div&gt;
+        <span class="hljs-meta">&lt;?php</span> } <span class="hljs-meta">?&gt;</span>
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\7\9.PNG" alt="9" /></p>
+        <hr />
+        <h2 id="menggunakan-foreach">Menggunakan Foreach</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$angka</span> = [<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">15</span>, <span class="hljs-number">20</span>, <span class="hljs-number">11</span>];
+<span class="hljs-meta">?&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Latihan <span class="hljs-number">2</span>&lt;/title&gt;
+        &lt;style&gt;
+            .kotak {
+                width: <span class="hljs-number">50</span>px;
+                height: <span class="hljs-number">50</span>px;
+                background-color: salmon;
+                text-align: center;
+                line-height: <span class="hljs-number">50</span>px;
+                margin: <span class="hljs-number">3</span>px;
+                <span class="hljs-keyword">float</span>: left;
+            }
+
+            .clear {
+                clear: both;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">foreach</span>( <span class="hljs-variable">$angka</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$a</span> ) { <span class="hljs-meta">?&gt;</span>
+        &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span>=&quot;<span class="hljs-title">kotak</span>&quot;&gt;&lt;?<span class="hljs-title">php</span> <span class="hljs-title">echo</span> $<span class="hljs-title">a</span>; ?&gt;&lt;/<span class="hljs-title">div</span>&gt;
+        &lt;?<span class="hljs-title">php</span> } ?&gt;
+    &lt;/<span class="hljs-title">body</span>&gt;
+&lt;/<span class="hljs-title">html</span>&gt;
+</span></code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\7\9.PNG" alt="9" /></p>
+        <hr />
+        <p>echo diganti &lt;?=</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$angka</span> = [<span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">15</span>, <span class="hljs-number">20</span>, <span class="hljs-number">11</span>];
+<span class="hljs-meta">?&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Latihan <span class="hljs-number">2</span>&lt;/title&gt;
+        &lt;style&gt;
+            .kotak {
+                width: <span class="hljs-number">50</span>px;
+                height: <span class="hljs-number">50</span>px;
+                background-color: salmon;
+                text-align: center;
+                line-height: <span class="hljs-number">50</span>px;
+                margin: <span class="hljs-number">3</span>px;
+                <span class="hljs-keyword">float</span>: left;
+            }
+
+            .clear {
+                clear: both;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">foreach</span>( <span class="hljs-variable">$angka</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$a</span> ) : <span class="hljs-meta">?&gt;</span>
+        &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span>=&quot;<span class="hljs-title">kotak</span>&quot;&gt;&lt;?= $<span class="hljs-title">a</span>; ?&gt;&lt;/<span class="hljs-title">div</span>&gt;
+        &lt;?<span class="hljs-title">php</span> <span class="hljs-title">endforeach</span> ?&gt;
+    &lt;/<span class="hljs-title">body</span>&gt;
+&lt;/<span class="hljs-title">html</span>&gt;
+</span></code></pre>
+        <hr />
+        <h2 id="latihan">Latihan</h2>
+        <pre><code class="language-php">&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Daftar Mahasiswa&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Daftar Mahasiswa&lt;/h1&gt;
+        &lt;ul&gt;
+            &lt;li&gt;Faizal Dwi Al Farizi&lt;/li&gt;
+            &lt;li&gt;B21055&lt;/li&gt;
+            &lt;li&gt;Sistem Informasi&lt;/li&gt;
+            &lt;li&gt;faizal@gmail.com&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\7\10.PNG" alt="10" /></p>
+        <hr />
+        <h3 id="menggunakan-foreach-1">Menggunakan Foreach</h3>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$mahasiswa</span> = [<span class="hljs-string">&quot;Faizal Dwi Al Farizi&quot;</span>, <span class="hljs-string">&quot;B21055&quot;</span>, <span class="hljs-string">&quot;Sistem Informasi&quot;</span>, <span class="hljs-string">&quot;faizal@gmail.com&quot;</span>];
+<span class="hljs-meta">?&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Daftar Mahasiswa&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Daftar Mahasiswa&lt;/h1&gt;
+        &lt;ul&gt;
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">foreach</span>( <span class="hljs-variable">$mahasiswa</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$mhs</span> ) : <span class="hljs-meta">?&gt;</span>
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$mhs</span>; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">endforeach</span>; <span class="hljs-meta">?&gt;</span>
+        &lt;/ul&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\7\10.PNG" alt="10" /></p>
+        <hr />
+        <h3 id="memanggil-dengan-index">Memanggil Dengan Index</h3>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$mahasiswa</span> = [<span class="hljs-string">&quot;Faizal Dwi Al Farizi&quot;</span>, <span class="hljs-string">&quot;B21055&quot;</span>, <span class="hljs-string">&quot;Sistem Informasi&quot;</span>, <span class="hljs-string">&quot;faizal@gmail.com&quot;</span>];
+<span class="hljs-meta">?&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Daftar Mahasiswa&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Daftar Mahasiswa&lt;/h1&gt;
+        &lt;ul&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$mahasiswa</span>[<span class="hljs-number">0</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$mahasiswa</span>[<span class="hljs-number">1</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$mahasiswa</span>[<span class="hljs-number">2</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$mahasiswa</span>[<span class="hljs-number">3</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\7\10.PNG" alt="10" /></p>
+        <hr />
+        <h2 id="array-didalam-array">Array Didalam Array</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$mahasiswa</span> = [
+        [<span class="hljs-string">&quot;Faizal Dwi Al Farizi&quot;</span>, <span class="hljs-string">&quot;B21055&quot;</span>, <span class="hljs-string">&quot;Sistem Informasi&quot;</span>, <span class="hljs-string">&quot;faizal@gmail.com&quot;</span>],
+        [<span class="hljs-string">&quot;Black&quot;</span>, <span class="hljs-string">&quot;B21056&quot;</span>, <span class="hljs-string">&quot;Teknik Informasi&quot;</span>, <span class="hljs-string">&quot;black@gmail.com&quot;</span>],
+    ];
+<span class="hljs-meta">?&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Daftar Mahasiswa&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Daftar Mahasiswa&lt;/h1&gt;
+        <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">foreach</span>( <span class="hljs-variable">$mahasiswa</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$mhs</span> ) : <span class="hljs-meta">?&gt;</span>
+        &lt;ul&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$mhs</span>[<span class="hljs-number">0</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$mhs</span>[<span class="hljs-number">1</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$mhs</span>[<span class="hljs-number">2</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$mhs</span>[<span class="hljs-number">3</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+        &lt;/ul&gt;
+        <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">endforeach</span>; <span class="hljs-meta">?&gt;</span>
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\7\11.PNG" alt="11" /></p>
+        <hr />
+        <h3 id="menggunakan-foreach-2">Menggunakan Foreach</h3>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$mahasiswa</span> = [
+        [<span class="hljs-string">&quot;Faizal Dwi Al Farizi&quot;</span>, <span class="hljs-string">&quot;B21055&quot;</span>, <span class="hljs-string">&quot;Sistem Informasi&quot;</span>, <span class="hljs-string">&quot;faizal@gmail.com&quot;</span>],
+        [<span class="hljs-string">&quot;Black&quot;</span>, <span class="hljs-string">&quot;B21056&quot;</span>, <span class="hljs-string">&quot;Teknik Informasi&quot;</span>, <span class="hljs-string">&quot;black@gmail.com&quot;</span>],
+        [<span class="hljs-string">&quot;Syiber&quot;</span>, <span class="hljs-string">&quot;B21057&quot;</span>, <span class="hljs-string">&quot;Sistem Informasi&quot;</span>, <span class="hljs-string">&quot;syiber@gmail.com&quot;</span>],
+    ];
+<span class="hljs-meta">?&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Daftar Mahasiswa&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Daftar Mahasiswa&lt;/h1&gt;
+        <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">foreach</span>( <span class="hljs-variable">$mahasiswa</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$mhs</span> ) : <span class="hljs-meta">?&gt;</span>
+        &lt;ul&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$mhs</span>[<span class="hljs-number">0</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$mhs</span>[<span class="hljs-number">1</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$mhs</span>[<span class="hljs-number">2</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+            &lt;li&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$mhs</span>[<span class="hljs-number">3</span>]; <span class="hljs-meta">?&gt;</span>&lt;/li&gt;
+        &lt;/ul&gt;
+        <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">endforeach</span>; <span class="hljs-meta">?&gt;</span>
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\7\12.PNG" alt="12" /></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-variable">$mahasiswa</span> = [
+        [<span class="hljs-string">&quot;Faizal Dwi Al Farizi&quot;</span>, <span class="hljs-string">&quot;B21055&quot;</span>, <span class="hljs-string">&quot;Sistem Informasi&quot;</span>, <span class="hljs-string">&quot;faizal@gmail.com&quot;</span>],
+        [<span class="hljs-string">&quot;Black&quot;</span>, <span class="hljs-string">&quot;B21056&quot;</span>, <span class="hljs-string">&quot;Teknik Informasi&quot;</span>, <span class="hljs-string">&quot;black@gmail.com&quot;</span>],
+        [<span class="hljs-string">&quot;Syiber&quot;</span>, <span class="hljs-string">&quot;B21057&quot;</span>, <span class="hljs-string">&quot;Sistem Informasi&quot;</span>, <span class="hljs-string">&quot;syiber@gmail.com&quot;</span>],
+    ];
+<span class="hljs-meta">?&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Daftar Mahasiswa&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Daftar Mahasiswa&lt;/h1&gt;
+        <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">foreach</span>( <span class="hljs-variable">$mahasiswa</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$mhs</span> ) : <span class="hljs-meta">?&gt;</span>
+        &lt;ul&gt;
+            &lt;li&gt;
+                Nama :
+                <span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$mhs</span>[<span class="hljs-number">0</span>]; <span class="hljs-meta">?&gt;</span>
+            &lt;/li&gt;
+            &lt;li&gt;
+                NIM :
+                <span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$mhs</span>[<span class="hljs-number">1</span>]; <span class="hljs-meta">?&gt;</span>
+            &lt;/li&gt;
+            &lt;li&gt;
+                Jurusan :
+                <span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$mhs</span>[<span class="hljs-number">2</span>]; <span class="hljs-meta">?&gt;</span>
+            &lt;/li&gt;
+            &lt;li&gt;
+                Email :
+                <span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$mhs</span>[<span class="hljs-number">3</span>]; <span class="hljs-meta">?&gt;</span>
+            &lt;/li&gt;
+        &lt;/ul&gt;
+        <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">endforeach</span>; <span class="hljs-meta">?&gt;</span>
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\7\13.PNG" alt="13" /></p>
+
+        <script
+            async
+            src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"
+        ></script>
+    </body>
+</html>

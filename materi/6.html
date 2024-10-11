@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Function</title>
+        <style>
+            /* From extension vscode.github */
+            /*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+            .vscode-dark img[src$="\#gh-light-mode-only"],
+            .vscode-light img[src$="\#gh-dark-mode-only"] {
+                display: none;
+            }
+        </style>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <link rel="stylesheet" href="../asset/css/markdown.min.css" />
+        <link rel="stylesheet" href="../asset/css/highlight.min.css" />
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC",
+                    "Segoe UI", system-ui, "Ubuntu", "Droid Sans", sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+            .task-list-item {
+                list-style-type: none;
+            }
+
+            .task-list-item-checkbox {
+                margin-left: -20px;
+                vertical-align: middle;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="function">Function</h1>
+        <h2 id="2-jenis">2 jenis</h2>
+        <ul>
+            <li>
+                <p>Built in Function</p>
+                <p>Fungsi yang sudah disediakan oleh PHP</p>
+            </li>
+            <li>
+                <p>User-Defined Function</p>
+                <p>fungsi yang kita bikin sendiri</p>
+            </li>
+        </ul>
+        <hr />
+        <h2 id="built-in-function">Built-in Function</h2>
+        <p>
+            <a href="http://php.net/manual/en/funcref.php"
+                >http://php.net/manual/en/funcref.php</a
+            >
+        </p>
+        <hr />
+        <h2 id="date--time">Date / Time</h2>
+        <ul>
+            <li>time()</li>
+            <li>date()</li>
+            <li>mktime()</li>
+            <li>strtotime()</li>
+        </ul>
+        <hr />
+        <h2 id="date">date()</h2>
+        <p>untuk menampilkan tgl dengan format tertentu</p>
+        <p>date(), function yang membutuhkan sebuah parameter</p>
+        <p>menampilkan hari</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">date</span>(<span class="hljs-string">&quot;l&quot;</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p>
+            <strong>Hasil :</strong>
+            <img src="file:///d:\Project\php\asset\img\6\1.PNG" alt="1" />
+        </p>
+        <h1 id="menampilkan-tgl">Menampilkan Tgl</h1>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">date</span>(<span class="hljs-string">&quot;d&quot;</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\6\2.PNG" alt="2" /></p>
+        <hr />
+        <h2 id="menampilkan-bulan">Menampilkan Bulan</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">date</span>(<span class="hljs-string">&quot;M&quot;</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\6\3.PNG" alt="3" /></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">date</span>(<span class="hljs-string">&quot;m&quot;</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\6\4.PNG" alt="4" /></p>
+        <hr />
+        <h2 id="membuat-tanggal-sesuai-format-sendiri">
+            Membuat Tanggal Sesuai Format Sendiri
+        </h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">date</span>(<span class="hljs-string">&quot;l, d-M-Y&quot;</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\6\5.PNG" alt="5" /></p>
+        <hr />
+        <h2 id="melihat-format-date">Melihat Format date()</h2>
+        <ol>
+            <li>buka link referensi php</li>
+            <li>kepencarian</li>
+            <li>ketik date</li>
+            <li>pilih date</li>
+        </ol>
+        <hr />
+        <h2 id="time">time()</h2>
+        <p>UNIX Timestamp / EPOCH time</p>
+        <p>asal mula waktu didunia komputer</p>
+        <p>detik yang sudah berlalu sejak 1 Januari 1970</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">time</span>();
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\6\6.PNG" alt="6" /></p>
+        <hr />
+        <h2 id="hari-untuk-100-hari-kedepan">Hari Untuk 100 Hari Kedepan</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">date</span>(<span class="hljs-string">&quot;l&quot;</span>, <span class="hljs-title function_ invoke__">time</span>()+<span class="hljs-number">60</span>*<span class="hljs-number">60</span>*<span class="hljs-number">24</span>*<span class="hljs-number">100</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\6\7.PNG" alt="7" /></p>
+        <hr />
+        <h2 id="hari-untuk-100-hari-kebelakang">
+            Hari Untuk 100 Hari Kebelakang
+        </h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">date</span>(<span class="hljs-string">&quot;l&quot;</span>, <span class="hljs-title function_ invoke__">time</span>()-<span class="hljs-number">60</span>*<span class="hljs-number">60</span>*<span class="hljs-number">24</span>*<span class="hljs-number">100</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><img src="file:///d:\Project\php\asset\img\6\8.PNG" alt="8" /></p>
+        <hr />
+        <h2 id="tgl-100-hari-kebelakang">Tgl 100 Hari Kebelakang</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">date</span>(<span class="hljs-string">&quot;d M Y&quot;</span>, <span class="hljs-title function_ invoke__">time</span>()-<span class="hljs-number">60</span>*<span class="hljs-number">60</span>*<span class="hljs-number">24</span>*<span class="hljs-number">100</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\6\9.PNG" alt="9" /></p>
+        <hr />
+        <h2 id="mktime">mktime</h2>
+        <p>membuat sendiri detik</p>
+        <p>mktime(0, 0, 0, 0, 0, 0, 0);</p>
+        <p>jam, menit, detik, bulan, tanggal, tahun</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">mktime</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">9</span>, <span class="hljs-number">28</span>, <span class="hljs-number">2002</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\6\10.PNG" alt="10" /></p>
+        <p>Menghitung detik dari 1 Januari 1970 ke 28 september 2002</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">date</span>(<span class="hljs-string">&quot;l&quot;</span>, <span class="hljs-title function_ invoke__">mktime</span>(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">9</span>, <span class="hljs-number">28</span>, <span class="hljs-number">2002</span>));
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\6\11.PNG" alt="11" /></p>
+        <hr />
+        <h2 id="strtotime">strtotime</h2>
+        <p>format tanggal jadi detik</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">strtotime</span>(<span class="hljs-string">&quot;25 aug 1985&quot;</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\6\12.PNG" alt="12" /></p>
+        <hr />
+        <h2 id="mencari-hari-lahir">Mencari Hari Lahir</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">date</span>(<span class="hljs-string">&quot;l&quot;</span>, <span class="hljs-title function_ invoke__">strtotime</span>(<span class="hljs-string">&quot;28 sep 2002&quot;</span>));
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\6\13.PNG" alt="13" /></p>
+        <hr />
+        <h2 id="string">String</h2>
+        <ul>
+            <li>
+                <p><strong>strlen()</strong></p>
+                <p>Menghitung panjang sebuah string</p>
+            </li>
+            <li>
+                <p><strong>strcmp()</strong></p>
+                <p>untuk membandingkan 2 buah string</p>
+            </li>
+            <li>
+                <p><strong>explode()</strong></p>
+                <p>memecah sebuah string menjadi array</p>
+            </li>
+            <li>
+                <p><strong>htmlspecialchars()</strong></p>
+                <p>function khusus untuk menjaga kita dari hacker</p>
+            </li>
+        </ul>
+        <hr />
+        <h2 id="utility">Utility</h2>
+        <p>Fungsi bantuan</p>
+        <ul>
+            <li>
+                <p><strong>var_dump()</strong></p>
+                <p>mencetak isi dari sebuah variable, array, object</p>
+            </li>
+            <li>
+                <p><strong>isset()</strong></p>
+                <p>
+                    mengecek apakah sebuah variable sudah pernah dibikin /
+                    belum, menghasilkan nilai boolean
+                </p>
+            </li>
+            <li>
+                <p><strong>empty()</strong></p>
+                <p>mengecek apakah variable yang ada itu kosong atau tidak</p>
+            </li>
+            <li>
+                <p><strong>die()</strong></p>
+                <p>memberhentikan program kita</p>
+            </li>
+            <li>
+                <p><strong>sleep()</strong></p>
+                <p>memberhentikan sementara</p>
+            </li>
+        </ul>
+        <hr />
+        <h2 id="user-defined-function">User-Defined Function</h2>
+        <p>fungsi yang kita bikin sendiri</p>
+        <p>function salam()</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">salam</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Selamat Datang, Admin!&quot;</span>;
+    }
+<span class="hljs-meta">?&gt;</span>
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Document&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-title function_ invoke__">salam</span>() <span class="hljs-meta">?&gt;</span>&lt;/h1&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\6\14.PNG" alt="14" /></p>
+        <hr />
+        <h2 id="memberikan-parameter-nama">Memberikan Parameter Nama</h2>
+        <p>function salam($nama)</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">salam</span>(<span class="hljs-params"><span class="hljs-variable">$waktu</span>, <span class="hljs-variable">$nama</span></span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Selamat <span class="hljs-subst">$waktu</span>, <span class="hljs-subst">$nama</span>!&quot;</span>;
+    }
+<span class="hljs-meta">?&gt;</span>
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Document&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-title function_ invoke__">salam</span>(<span class="hljs-string">&quot;Pagi&quot;</span>, <span class="hljs-string">&quot;Faizal&quot;</span>) <span class="hljs-meta">?&gt;</span>&lt;/h1&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\6\15.PNG" alt="15" /></p>
+        <hr />
+        <h2 id="ketika-2-arguments-tapi-cuma-ngirim-1-parameter">
+            Ketika 2 Arguments Tapi Cuma Ngirim 1 Parameter
+        </h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">salam</span>(<span class="hljs-params"><span class="hljs-variable">$waktu</span>, <span class="hljs-variable">$nama</span></span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Selamat <span class="hljs-subst">$waktu</span>, <span class="hljs-subst">$nama</span>!&quot;</span>;
+    }
+<span class="hljs-meta">?&gt;</span>
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Document&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-title function_ invoke__">salam</span>(<span class="hljs-string">&quot;Pagi&quot;</span>) <span class="hljs-meta">?&gt;</span>&lt;/h1&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\6\16.PNG" alt="16" /></p>
+        <hr />
+        <h2 id="menggunakan-parameter-default">
+            Menggunakan Parameter Default
+        </h2>
+        <p>
+            function salam($waktu = &quot;Datang&quot;, $nama =
+            &quot;Admin&quot;)
+        </p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">salam</span>(<span class="hljs-params"><span class="hljs-variable">$waktu</span> = <span class="hljs-string">&quot;Datang&quot;</span>, <span class="hljs-variable">$nama</span> = <span class="hljs-string">&quot;Admin&quot;</span></span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Selamat <span class="hljs-subst">$waktu</span>, <span class="hljs-subst">$nama</span>!&quot;</span>;
+    }
+<span class="hljs-meta">?&gt;</span>
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Document&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-title function_ invoke__">salam</span>() <span class="hljs-meta">?&gt;</span>&lt;/h1&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\6\17.PNG" alt="17" /></p>
+        <hr />
+        <h2 id="ketika-mengisi-parameter-lengkap-maka-normal">
+            Ketika Mengisi Parameter Lengkap, Maka Normal
+        </h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">salam</span>(<span class="hljs-params"><span class="hljs-variable">$waktu</span> = <span class="hljs-string">&quot;Datang&quot;</span>, <span class="hljs-variable">$nama</span> = <span class="hljs-string">&quot;Admin&quot;</span></span>) </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Selamat <span class="hljs-subst">$waktu</span>, <span class="hljs-subst">$nama</span>!&quot;</span>;
+    }
+<span class="hljs-meta">?&gt;</span>
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Document&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-title function_ invoke__">salam</span>(<span class="hljs-string">&quot;Pagi&quot;</span>, <span class="hljs-string">&quot;Faizal&quot;</span>) <span class="hljs-meta">?&gt;</span>&lt;/h1&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\6\18.PNG" alt="18" /></p>
+
+        <script
+            async
+            src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"
+        ></script>
+    </body>
+</html>

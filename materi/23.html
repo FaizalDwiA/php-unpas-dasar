@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>PDF Peporting</title>
+        <style>
+            /* From extension vscode.github */
+            /*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+            .vscode-dark img[src$="\#gh-light-mode-only"],
+            .vscode-light img[src$="\#gh-dark-mode-only"] {
+                display: none;
+            }
+        </style>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <link rel="stylesheet" href="../asset/css/markdown.min.css" />
+        <link rel="stylesheet" href="../asset/css/highlight.min.css" />
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC",
+                    "Segoe UI", system-ui, "Ubuntu", "Droid Sans", sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+            .task-list-item {
+                list-style-type: none;
+            }
+
+            .task-list-item-checkbox {
+                margin-left: -20px;
+                vertical-align: middle;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="pdf-peporting">PDF Peporting</h1>
+        <h2 id="pengertian">Pengertian</h2>
+        <ul>
+            <li>Mengubah PHP menjadi PDF</li>
+        </ul>
+        <hr />
+        <h2 id="manfaat">Manfaat</h2>
+        <ul>
+            <li>Laporan</li>
+            <li>kuitansi / invoice / faktur</li>
+            <li>Form isian</li>
+            <li>...</li>
+        </ul>
+        <hr />
+        <h2 id="membuat-pdf">Membuat PDF</h2>
+        <ul>
+            <li>Fitur bawaan browser</li>
+            <li>
+                Library PHP
+                <ul>
+                    <li>FPDF</li>
+                    <li>mPDF</li>
+                    <li>DOMPDF</li>
+                    <li>...</li>
+                </ul>
+            </li>
+        </ul>
+        <hr />
+        <h2 id="lewat-browser">Lewat Browser</h2>
+        <ol>
+            <li>Buka file lewat chrome</li>
+            <li>Klik titik 3 pojok</li>
+            <li>Klik print atau bisa juga ctrl + p</li>
+            <li>Ubah destinations menjadi save as PDF</li>
+            <li>Save</li>
+        </ol>
+        <p>
+            <strong>Problem</strong> : ada beberapa fitur yang ingin
+            disembunyikan tapi tetap ditampilkan
+        </p>
+        <h2 id="dengan-css">Dengan CSS</h2>
+        <p>menggunakan media print {}</p>
+        <p><em>index.php</em></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-title function_ invoke__">session_start</span>();
+
+<span class="hljs-keyword">if</span>( !<span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_SESSION</span>[<span class="hljs-string">&quot;login&quot;</span>]) ) {
+    <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&quot;Location: login.php&quot;</span>);
+    <span class="hljs-keyword">exit</span>;
+}
+
+<span class="hljs-keyword">require</span> <span class="hljs-string">&#x27;functions.php&#x27;</span>;
+<span class="hljs-variable">$mahasiswa</span> = <span class="hljs-title function_ invoke__">query</span>(<span class="hljs-string">&quot;SELECT * FROM mahasiswa&quot;</span>);
+
+<span class="hljs-comment">// tombol cari ditekan</span>
+<span class="hljs-keyword">if</span>( <span class="hljs-keyword">isset</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&quot;cari&quot;</span>]) ) {
+    <span class="hljs-variable">$mahasiswa</span> = <span class="hljs-title function_ invoke__">cari</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&quot;keyword&quot;</span>]);
+}
+<span class="hljs-meta">?&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+&lt;head&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+    &lt;style&gt;
+        img {
+            width: <span class="hljs-number">50</span>px;
+            height: <span class="hljs-number">50</span>px;
+        }
+
+        .loader {
+            width: <span class="hljs-number">100</span>px;
+            position: absolute;
+            top: <span class="hljs-number">118</span>px;
+            z-index: -<span class="hljs-number">1</span>;
+            display: none;
+        }
+
+        @media <span class="hljs-keyword">print</span> {
+            .logout, .tambah, .form-cari, .aksi {
+                display: none;
+            }
+        }
+    &lt;/style&gt;
+
+    &lt;script src=<span class="hljs-string">&quot;js/jquery-3.6.0.min.js&quot;</span>&gt;&lt;/script&gt;
+    &lt;script src=<span class="hljs-string">&quot;js/java.js&quot;</span>&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;a href=<span class="hljs-string">&quot;logout.php&quot;</span> <span class="hljs-class"><span class="hljs-keyword">class</span>=&quot;<span class="hljs-title">logout</span>&quot;&gt;<span class="hljs-title">Logout</span>&lt;/<span class="hljs-title">a</span>&gt;
+
+    &lt;<span class="hljs-title">h1</span>&gt;<span class="hljs-title">Daftar</span> <span class="hljs-title">Mahasiswa</span>&lt;/<span class="hljs-title">h1</span>&gt;
+
+    &lt;<span class="hljs-title">a</span> <span class="hljs-title">href</span>=&quot;<span class="hljs-title">tambah</span>.<span class="hljs-title">php</span>&quot; <span class="hljs-title">class</span>=&quot;<span class="hljs-title">tambah</span>&quot;&gt;<span class="hljs-title">Tambah</span> <span class="hljs-title">data</span> <span class="hljs-title">mahasiswa</span>&lt;/<span class="hljs-title">a</span>&gt;
+    &lt;<span class="hljs-title">br</span>&gt;&lt;<span class="hljs-title">br</span>&gt;
+
+    &lt;<span class="hljs-title">form</span> <span class="hljs-title">action</span>=&quot;&quot; <span class="hljs-title">method</span>=&quot;<span class="hljs-title">post</span>&quot; <span class="hljs-title">class</span>=&quot;<span class="hljs-title">form</span>-<span class="hljs-title">cari</span>&gt;
+        &lt;<span class="hljs-title">input</span> <span class="hljs-title">type</span>=&quot;<span class="hljs-title">text</span>&quot; <span class="hljs-title">name</span>=&quot;<span class="hljs-title">keyword</span>&quot; <span class="hljs-title">size</span>=&quot;40&quot; <span class="hljs-title">autofocus</span> <span class="hljs-title">placeholder</span>=&quot;<span class="hljs-title">masukkan</span> <span class="hljs-title">keyword</span> <span class="hljs-title">pencarian</span>&quot; <span class="hljs-title">autocomplete</span>=&quot;<span class="hljs-title">off</span>&quot; <span class="hljs-title">id</span>=&quot;<span class="hljs-title">keyword</span>&quot;&gt;
+        &lt;<span class="hljs-title">button</span> <span class="hljs-title">type</span>=&quot;<span class="hljs-title">submit</span>&quot; <span class="hljs-title">name</span>=&quot;<span class="hljs-title">cari</span>&quot; <span class="hljs-title">id</span>=&quot;<span class="hljs-title">tombol</span>-<span class="hljs-title">cari</span>&quot;&gt;<span class="hljs-title">Cari</span>!&lt;/<span class="hljs-title">button</span>&gt;
+
+        &lt;<span class="hljs-title">img</span> <span class="hljs-title">src</span>=&quot;<span class="hljs-title">img</span>/<span class="hljs-title">loader</span>.<span class="hljs-title">jpg</span>&quot; <span class="hljs-title">class</span>=&#x27;<span class="hljs-title">loader</span>&#x27;&gt;
+    &lt;/<span class="hljs-title">form</span>&gt;
+
+    &lt;<span class="hljs-title">br</span>&gt;
+    &lt;<span class="hljs-title">div</span> <span class="hljs-title">id</span>=&quot;<span class="hljs-title">container</span>&quot;&gt;
+        &lt;<span class="hljs-title">table</span> <span class="hljs-title">border</span>=&quot;1&quot; <span class="hljs-title">cellpadding</span>=&quot;10&quot; <span class="hljs-title">cellspacing</span>=&quot;0&quot;&gt;
+            &lt;<span class="hljs-title">tr</span>&gt;
+                &lt;<span class="hljs-title">th</span>&gt;<span class="hljs-title">No</span>.&lt;/<span class="hljs-title">th</span>&gt;
+                &lt;<span class="hljs-title">th</span> <span class="hljs-title">class</span>=&quot;<span class="hljs-title">aksi</span>&quot;&gt;<span class="hljs-title">Aksi</span>&lt;/<span class="hljs-title">th</span>&gt;
+                &lt;<span class="hljs-title">th</span>&gt;<span class="hljs-title">Gambar</span>&lt;/<span class="hljs-title">th</span>&gt;
+                &lt;<span class="hljs-title">th</span>&gt;<span class="hljs-title">Nim</span>&lt;/<span class="hljs-title">th</span>&gt;
+                &lt;<span class="hljs-title">th</span>&gt;<span class="hljs-title">Nama</span>&lt;/<span class="hljs-title">th</span>&gt;
+                &lt;<span class="hljs-title">th</span>&gt;<span class="hljs-title">Email</span>&lt;/<span class="hljs-title">th</span>&gt;
+                &lt;<span class="hljs-title">th</span>&gt;<span class="hljs-title">Jurusan</span>&lt;/<span class="hljs-title">th</span>&gt;
+            &lt;/<span class="hljs-title">tr</span>&gt;
+
+            &lt;?<span class="hljs-title">php</span> $<span class="hljs-title">i</span> = 1; ?&gt;
+            &lt;?<span class="hljs-title">php</span> <span class="hljs-title">foreach</span>( $<span class="hljs-title">mahasiswa</span> <span class="hljs-title">as</span> $<span class="hljs-title">row</span> ) : ?&gt;
+            &lt;<span class="hljs-title">tr</span>&gt;
+                &lt;<span class="hljs-title">td</span>&gt;&lt;?= $<span class="hljs-title">i</span>; ?&gt;&lt;/<span class="hljs-title">td</span>&gt;
+                &lt;<span class="hljs-title">td</span> <span class="hljs-title">class</span>=&quot;<span class="hljs-title">aksi</span>&quot;&gt;
+                    &lt;<span class="hljs-title">a</span> <span class="hljs-title">href</span>=&quot;<span class="hljs-title">ubah</span>.<span class="hljs-title">php</span>?<span class="hljs-title">id</span>=&lt;?= $<span class="hljs-title">row</span>[&quot;<span class="hljs-title">id</span>&quot;]; ?&gt;&quot;&gt;<span class="hljs-title">Ubah</span>&lt;/<span class="hljs-title">a</span>&gt; |
+                    &lt;<span class="hljs-title">a</span> <span class="hljs-title">href</span>=&quot;<span class="hljs-title">hapus</span>.<span class="hljs-title">php</span>?<span class="hljs-title">id</span>=&lt;?= $<span class="hljs-title">row</span>[&quot;<span class="hljs-title">id</span>&quot;]; ?&gt;&quot; <span class="hljs-title">onclick</span>=&quot;<span class="hljs-title">return</span> <span class="hljs-title">confirm</span>(&#x27;<span class="hljs-title">yakin</span>?&#x27;)&quot;&gt;<span class="hljs-title">Hapus</span>&lt;/<span class="hljs-title">a</span>&gt;
+                &lt;/<span class="hljs-title">td</span>&gt;
+                &lt;<span class="hljs-title">td</span>&gt;&lt;<span class="hljs-title">img</span> <span class="hljs-title">src</span>=&quot;<span class="hljs-title">img</span>/&lt;?= $<span class="hljs-title">row</span>[&quot;<span class="hljs-title">gambar</span>&quot;]; ?&gt;&quot;&gt;&lt;/<span class="hljs-title">td</span>&gt;
+                &lt;<span class="hljs-title">td</span>&gt;&lt;?= $<span class="hljs-title">row</span>[&quot;<span class="hljs-title">nim</span>&quot;]; ?&gt;&lt;/<span class="hljs-title">td</span>&gt;
+                &lt;<span class="hljs-title">td</span>&gt;&lt;?= $<span class="hljs-title">row</span>[&quot;<span class="hljs-title">nama</span>&quot;]; ?&gt;&lt;/<span class="hljs-title">td</span>&gt;
+                &lt;<span class="hljs-title">td</span>&gt;&lt;?= $<span class="hljs-title">row</span>[&quot;<span class="hljs-title">email</span>&quot;]; ?&gt;&lt;/<span class="hljs-title">td</span>&gt;
+                &lt;<span class="hljs-title">td</span>&gt;&lt;?= $<span class="hljs-title">row</span>[&quot;<span class="hljs-title">jurusan</span>&quot;]; ?&gt;&lt;/<span class="hljs-title">td</span>&gt;
+            &lt;/<span class="hljs-title">tr</span>&gt;
+            &lt;?<span class="hljs-title">php</span> $<span class="hljs-title">i</span>++; ?&gt;
+            &lt;?<span class="hljs-title">php</span> <span class="hljs-title">endforeach</span>; ?&gt;
+        &lt;/<span class="hljs-title">table</span>&gt;
+    &lt;/<span class="hljs-title">div</span>&gt;
+
+&lt;/<span class="hljs-title">body</span>&gt;
+&lt;/<span class="hljs-title">html</span>&gt;
+</span></code></pre>
+        <hr />
+        <h2 id="library">Library</h2>
+        <ol>
+            <li>ketik mPDF digoogle</li>
+            <li>
+                klik requirements (apa yang dibutuhkan untuk menggunakan library
+                ini)
+            </li>
+            <li>klik instalation</li>
+        </ol>
+
+        <script
+            async
+            src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"
+        ></script>
+    </body>
+</html>

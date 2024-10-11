@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Sinkaks Awal</title>
+        <style>
+            /* From extension vscode.github */
+            /*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+            .vscode-dark img[src$="\#gh-light-mode-only"],
+            .vscode-light img[src$="\#gh-dark-mode-only"] {
+                display: none;
+            }
+        </style>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <link rel="stylesheet" href="../asset/css/markdown.min.css" />
+        <link rel="stylesheet" href="../asset/css/highlight.min.css" />
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC",
+                    "Segoe UI", system-ui, "Ubuntu", "Droid Sans", sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+            .task-list-item {
+                list-style-type: none;
+            }
+
+            .task-list-item-checkbox {
+                margin-left: -20px;
+                vertical-align: middle;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="sinkaks-awal">Sinkaks Awal</h1>
+        <h2 id="tag-php">Tag PHP</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <hr />
+        <h2 id="komentar">Komentar</h2>
+        <ul>
+            <li>
+                Syntax pemrograman yang tidak akan dieksekusi baik itu oleh
+                compailer / Interpreter
+            </li>
+            <li>
+                Biasanya untuk : menjelaskan fungsi dari baris2 codenya /
+                mendisable codenya
+            </li>
+        </ul>
+        <hr />
+        <h2 id="satu-baris">Satu Baris</h2>
+        <ul>
+            <li>Menggunakan : double slash</li>
+        </ul>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// ini adalah komentar</span>
+<span class="hljs-comment">// ini juga komentar</span>
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <hr />
+        <h2 id="lebih-dari-1-baris">Lebih Dari 1 Baris</h2>
+        <ul>
+            <li>Menggunakan : slash bintang, bintang slash</li>
+        </ul>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">/*
+ini komentar
+ini juga komentar
+*/</span>
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <hr />
+        <h2 id="standar-output">Standar Output</h2>
+        <ul>
+            <li>
+                <p>
+                    sebuah perintah diPHP, yang digunakan untuk menampilkan
+                    sesuatu kelayar
+                </p>
+            </li>
+            <li>
+                <p>Menggunakan :</p>
+                <ul>
+                    <li>
+                        <p>echo</p>
+                        <p>digunakan mencetak tulisan, isi variable, dll</p>
+                    </li>
+                    <li>
+                        <p>print</p>
+                        <p>digunakan mencetak tulisan, isi variable, dll</p>
+                    </li>
+                    <li>
+                        <p>print_r</p>
+                        <p>digunakan khusus untuk mencetak isi array</p>
+                    </li>
+                    <li>
+                        <p>var_dump</p>
+                        <p>
+                            digunakan untuk melihat isi variable, akan tampil
+                            mengenai informasi tersebut`
+                        </p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <blockquote>
+            <p>
+                NB : untuk print_r &amp; var_dumb biasanya dipakai untuk
+                debuging, jadi pada saat medebug program (mencari kesalahan
+                dimana/ pengen tahu isi variable apa)
+            </p>
+        </blockquote>
+        <hr />
+        <h2 id="echo">Echo</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;Faizal Dwi Alfarizi&#x27;</span>;
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><img src="file:///d:\Project\php\asset\img\4\1.PNG" alt="1" /></p>
+        <hr />
+        <h2 id="print">Print</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-keyword">print</span> <span class="hljs-string">&#x27;Faizal Dwi Alfarizi&#x27;</span>;
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><img src="file:///d:\Project\php\asset\img\4\1.PNG" alt="1" /></p>
+        <hr />
+        <h2 id="print_r">print_r</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-title function_ invoke__">print_r</span> (<span class="hljs-string">&#x27;Faizal Dwi Alfarizi&#x27;</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><img src="file:///d:\Project\php\asset\img\4\1.PNG" alt="1" /></p>
+        <hr />
+        <h2 id="var_dumb">var_dumb</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-title function_ invoke__">var_dump</span> (<span class="hljs-string">&#x27;Faizal Dwi Alfarizi&#x27;</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><img src="file:///d:\Project\php\asset\img\4\2.PNG" alt="2" /></p>
+        <ul>
+            <li>
+                var_dumb, akan memberikan informasi tidak hanya apa yang akan
+                ditampilkan.
+            </li>
+            <li>
+                tapi juga, memberikan informasi yang ditampilkan type data &amp;
+                ukuran(panajang string)
+            </li>
+        </ul>
+        <hr />
+        <h2 id="angka">Angka</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-number">123</span>;
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <hr />
+        <h2 id="boolean">Boolean</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-literal">true</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-literal">false</span>;
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><img src="file:///d:\Project\php\asset\img\4\3.PNG" alt="3" /></p>
+        <ul>
+            <li>Boolena true : 1</li>
+            <li>Boolean false : kosong / tidak tampil apa2</li>
+        </ul>
+        <hr />
+        <h2 id="string">String</h2>
+        <p>menggunakan : '' atau &quot;&quot;</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Jum&#x27;at&quot;</span>;
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <blockquote>
+            <p>kutip 2 (&quot;&quot;) sedikit lebih sakti diphp : variable</p>
+        </blockquote>
+        <hr />
+        <h2 id="penulisan-sintaks-php">Penulisan Sintaks PHP</h2>
+        <h3 id="php-didalam-html">PHP didalam HTML</h3>
+        <pre><code class="language-php">&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+&lt;head&gt;
+    &lt;meta charset=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;
+    &lt;title&gt;Belajar PHP&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Halo, Selamat Datang <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Faizal&quot;</span>; <span class="hljs-meta">?&gt;</span>&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <ul>
+            <li>Kenapa menulis php didalam html? (menyusahkan)</li>
+            <li>
+                Karena : nanti kita bisa ganti tulisan tersebut dengan database
+            </li>
+        </ul>
+        <pre><code class="language-php">&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+&lt;head&gt;
+    &lt;title&gt;Belajar PHP&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Halo, Selamat Datang <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Faizal&quot;</span>; <span class="hljs-meta">?&gt;</span>&lt;/h1&gt;
+    &lt;p&gt;<span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;ini adalah paragraf &quot;</span> <span class="hljs-meta">?&gt;</span>&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <hr />
+        <h3 id="html-didalam-php">HTML didalam PHP</h3>
+        <pre><code class="language-php">&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+&lt;head&gt;
+    &lt;meta charset=<span class="hljs-string">&quot;UTF-8&quot;</span>&gt;
+    &lt;title&gt;Belajar PHP&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    <span class="hljs-meta">&lt;?php</span>
+        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;h1&gt;Halo, Selamat Datang Faizal&lt;/h1&gt;&quot;</span>
+    <span class="hljs-meta">?&gt;</span>
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <hr />
+        <h3 id="variable">Variable</h3>
+        <p>untuk menampung sebuah nilai</p>
+        <p>di PHP tidak perlu mendefinisikan type data dari variable</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$nama</span> = <span class="hljs-string">&quot;Faizal Dwi Al Farizi&quot;</span>;
+<span class="hljs-meta">?&gt;</span>
+
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;meta charset=<span class="hljs-string">&quot;UTF-8&quot;</span> /&gt;
+        &lt;title&gt;Belajar PHP&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;
+            Halo, Selamat Datang
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-variable">$nama</span>; <span class="hljs-meta">?&gt;</span>
+        &lt;/h1&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <hr />
+        <h2 id="aturan">Aturan</h2>
+        <ol>
+            <li>
+                Tidak boleh diawali dengan angka, tapi boleh mengandung angka
+            </li>
+            <li>Tidak boleh ada spasi</li>
+            <li>Tidak boleh ada -</li>
+        </ol>
+        <hr />
+        <h2 id="interpolasi">Interpolasi</h2>
+        <p>
+            Mengecek apakah didalam kutip, terdapat variable / tidak, kalo ada
+            variable, jika ada yang ditampilkan isi variablenya
+        </p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$nama</span> = <span class="hljs-string">&quot;Faizal Dwi Al Farizi&quot;</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Halo, nama saya <span class="hljs-subst">$nama</span>&quot;</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;br&gt;&quot;</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&#x27;Halo, nama saya $nama&#x27;</span>;
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><img src="file:///d:\Project\php\asset\img\4\4.PNG" alt="4" /></p>
+        <hr />
+        <h2 id="operator">Operator</h2>
+        <p>aritmatika</p>
+        <p>+ - * /</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-keyword">echo</span> <span class="hljs-number">1</span> + <span class="hljs-number">1</span>;
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$x</span> = <span class="hljs-number">10</span>;
+<span class="hljs-variable">$y</span> = <span class="hljs-number">20</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$x</span> * <span class="hljs-variable">$y</span>;
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <hr />
+        <h2 id="penggabung-string--concatenation--concat">
+            Penggabung String / Concatenation / Concat
+        </h2>
+        <p>dengan menggunakan <strong>.</strong></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$nama_depan</span> = <span class="hljs-string">&quot;Faizal&quot;</span>;
+<span class="hljs-variable">$nama_belakang</span> = <span class="hljs-string">&quot;Dwi&quot;</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$nama_depan</span> . <span class="hljs-string">&quot; &quot;</span> . <span class="hljs-variable">$nama_belakang</span>;
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><img src="file:///d:\Project\php\asset\img\4\5.PNG" alt="5" /></p>
+        <hr />
+        <h2 id="assigment">Assigment</h2>
+        <p>Operator Penugasan</p>
+        <p>=, +=, -=, *=, /=, %=, .=</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$x</span> = <span class="hljs-number">1</span>;
+<span class="hljs-variable">$x</span> = <span class="hljs-number">5</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$x</span>;
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><img src="file:///d:\Project\php\asset\img\4\5.PNG" alt="5" /></p>
+        <blockquote>
+            <p>1 nya ditimpa 5</p>
+        </blockquote>
+        <hr />
+        <h3 id="">+=</h3>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$x</span> = <span class="hljs-number">1</span>;
+<span class="hljs-variable">$x</span> += <span class="hljs-number">5</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$x</span>;
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><img src="file:///d:\Project\php\asset\img\4\6.PNG" alt="6" /></p>
+        <hr />
+        <h3 id="-1">.=</h3>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$nama</span> = <span class="hljs-string">&quot;Faizal&quot;</span>;
+<span class="hljs-variable">$nama</span> .= <span class="hljs-string">&quot; &quot;</span>;
+<span class="hljs-variable">$nama</span> .= <span class="hljs-string">&quot;Dwi&quot;</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$nama</span>;
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><img src="file:///d:\Project\php\asset\img\4\7.PNG" alt="7" /></p>
+        <hr />
+        <h2 id="perbandingan">Perbandingan</h2>
+        <p>&lt;, &gt;, &lt;=, &gt;=, ==, !=</p>
+        <p>Biasanya dipakai pada saat kita membuat pengkondisian</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-number">1</span> &lt; <span class="hljs-number">5</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-number">1</span> == <span class="hljs-number">5</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-number">1</span> == <span class="hljs-string">&quot;1&quot;</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><img src="file:///d:\Project\php\asset\img\4\1.PNG" alt="1" /></p>
+        <p>kenapa hasilnya true?</p>
+        <p>karena : tidak mengecek type data, hanya mengecek nilainya</p>
+        <p>untuk mengecek type datanya juga nama Operatornya : identitas</p>
+        <hr />
+        <h2 id="identitas">Identitas</h2>
+        <p>===, !==</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-number">1</span> === <span class="hljs-string">&quot;1&quot;</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <hr />
+        <h2 id="logika">Logika</h2>
+        <p>&amp;&amp;, ||, !</p>
+        <p>Biasanya dipakai untuk pengkondisian</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$x</span> = <span class="hljs-number">10</span>;
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$x</span> &lt; <span class="hljs-number">20</span> &amp;&amp; <span class="hljs-variable">$x</span> % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <hr />
+        <h3 id="--and">&amp;&amp; / and</h3>
+        <p>kedua nya harus benar</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$x</span> = <span class="hljs-number">30</span>;
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$x</span> &lt; <span class="hljs-number">20</span> &amp;&amp; <span class="hljs-variable">$x</span> % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <hr />
+        <h3 id="--or">|| / or</h3>
+        <p>Bisa benar salah 1</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$x</span> = <span class="hljs-number">30</span>;
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$x</span> &lt; <span class="hljs-number">20</span> || <span class="hljs-variable">$x</span> % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+
+        <script
+            async
+            src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"
+        ></script>
+    </body>
+</html>

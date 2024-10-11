@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Database</title>
+        <style>
+            /* From extension vscode.github */
+            /*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+            .vscode-dark img[src$="\#gh-light-mode-only"],
+            .vscode-light img[src$="\#gh-dark-mode-only"] {
+                display: none;
+            }
+        </style>
+
+        <link rel="stylesheet" href="../asset/css/markdown.min.css" />
+        <link rel="stylesheet" href="../asset/css/highlight.min.css" />
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC",
+                    "Segoe UI", system-ui, "Ubuntu", "Droid Sans", sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+            .task-list-item {
+                list-style-type: none;
+            }
+
+            .task-list-item-checkbox {
+                margin-left: -20px;
+                vertical-align: middle;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="database">Database</h1>
+        <h2 id="data">Data</h2>
+        <p>Representasi fakta didunia nyata</p>
+        <hr />
+        <h2 id="contoh-merepresentasikan-data">
+            contoh merepresentasikan data
+        </h2>
+        <ul>
+            <li>Nama</li>
+            <li>Judul buku</li>
+            <li>No KTP</li>
+            <li>Harga</li>
+            <li>Foto</li>
+            <li>Dokumen</li>
+            <li>Video</li>
+        </ul>
+        <hr />
+        <h2 id="ilustrasi">Ilustrasi</h2>
+        <ul>
+            <li>buku itu punya judul, pengarang, penerbit, dll.</li>
+            <li>
+                Mahasiswa itu punya data : nama, nim/nrp, email, jurusan, dll.
+            </li>
+        </ul>
+        <hr />
+        <h2 id="menyimpan--mengelola-data">Menyimpan &amp; Mengelola Data</h2>
+        <ul>
+            <li>
+                Biasanya kita menyimpan data notepad : seperti nama, nim, email,
+                jurusan, no telp, dll
+            </li>
+            <li>
+                Atau untuk lebih kompleks menggunakan software untuk mengelola
+                data : exel
+            </li>
+        </ul>
+        <h3 id="masalah-dengan-exel">Masalah Dengan Exel</h3>
+        <ul>
+            <li>kaPasitas</li>
+            <li>Kecepatan</li>
+            <li>Keamanan</li>
+            <li>Duplikasi</li>
+            <li>dll.</li>
+        </ul>
+        <h3 id="solusi-">Solusi :</h3>
+        <ul>
+            <li>
+                <p>Skalabilitas</p>
+                <p>
+                    misal kalo datanya bertambah, sistem / apk mampu menangani
+                    itu
+                </p>
+            </li>
+            <li>
+                <p>Tersedia</p>
+                <p>Kapanpun kita minta / cari datanya ada</p>
+            </li>
+            <li>
+                <p>Aman</p>
+                <p>Apakah data yang sudah kita buat itu aman / tidak</p>
+            </li>
+            <li>
+                <p>Permanen</p>
+                <p>
+                    misal mennggunakan array, kita ingin menambahkan datanya,
+                    bisa datanya masuk tapi ketika refresh datanya akan hilang,
+                    jadi ingin nya ketika refresh datanya tidak hilang
+                </p>
+            </li>
+            <li>
+                <p>dll.</p>
+            </li>
+        </ul>
+        <hr />
+        <h2 id="database-1">Database</h2>
+        <p><img src="file:///d:\Project\php\asset\img\10\1.PNG" alt="1" /></p>
+        <p>DBMS (DataBase Menegement System)</p>
+        <h3 id="software-untuk-mengelola-database">
+            Software Untuk Mengelola Database
+        </h3>
+        <ul>
+            <li>Oracle</li>
+            <li>MySQL</li>
+            <li>SQL Server</li>
+            <li>PostgreSQL</li>
+            <li>MongoDB</li>
+        </ul>
+        <p>Database : data yang ada didalam DBMS</p>
+        <hr />
+        <h2 id="jenis-dbms">Jenis DBMS</h2>
+        <ul>
+            <li>Relational DBMS</li>
+            <li>Hierarchical DBMS</li>
+            <li>Network DBMS</li>
+            <li>NoSQL DBMS</li>
+        </ul>
+        <blockquote>
+            <p>
+                SQL : bahasa yang digunakan untuk melakukan interaksi pada
+                database
+            </p>
+        </blockquote>
+        <hr />
+        <h2 id="rdbms">RDBMS</h2>
+        <p><img src="file:///d:\Project\php\asset\img\10\2.PNG" alt="2" /></p>
+        <p>didalam database kita membuat table yang sangat banyak</p>
+        <p>Baris : record</p>
+        <p>Kolom : field</p>
+        <p><img src="file:///d:\Project\php\asset\img\10\3.PNG" alt="3" /></p>
+        <h2 id="primary-key">Primary Key</h2>
+        <p>Didalam sebauh table ada : Primary Key</p>
+        <p>
+            Primary Key : Sebuah data, yang dapat merepresentasikan 1 baris
+            record secara unik
+        </p>
+        <p><img src="file:///d:\Project\php\asset\img\10\4.PNG" alt="4" /></p>
+        <ul>
+            <li>Primary Key : nim</li>
+            <li>
+                Auto Increment : untuk menambah 1 nilai kepada 1 record yang
+                baru masuk
+            </li>
+            <li>Relationship : hubungan antar table</li>
+            <li>
+                Normalization / Normalisasi : Sebuah proses untuk membuat tabel
+                didalam database normal
+            </li>
+        </ul>
+        <hr />
+        <h2 id="istilah">Istilah</h2>
+        <ul>
+            <li>Field / Column</li>
+            <li>Row / Baris / Record</li>
+            <li>
+                Key
+                <ul>
+                    <li>Primary Key</li>
+                    <li>Foreign Key</li>
+                </ul>
+            </li>
+            <li>Auto INcrement</li>
+            <li>Relationship</li>
+            <li>Normalization / Normalisasi</li>
+        </ul>
+        <hr />
+        <h2 id="masuk-database">Masuk database</h2>
+        <ol>
+            <li>
+                <p>masuk ke control panel XAMPP</p>
+            </li>
+            <li>
+                <p>hidupkan MySQL sampai hijau</p>
+                <p>
+                    <img
+                        src="file:///d:\Project\php\asset\img\10\5.PNG"
+                        alt="5"
+                    />
+                </p>
+            </li>
+            <li>
+                <p>kemudian masuk ke C:\xampp\mysql\bin</p>
+            </li>
+            <li>
+                <p>klik mysql.exe</p>
+                <p>
+                    <img
+                        src="file:///d:\Project\php\asset\img\10\6.PNG"
+                        alt="6"
+                    />
+                </p>
+            </li>
+            <li>
+                <p>jika tidak bisa, lewat cmd</p>
+            </li>
+            <li>
+                <p>
+                    masuk cmd &gt; ketik cd C &gt;&gt; xampp &gt;&gt; mysql
+                    &gt;&gt; bin
+                </p>
+            </li>
+            <li>
+                <p>ketikkan mysql -u root -p</p>
+            </li>
+            <li>
+                <p>
+                    ketika suruh masukin password kita kosong kan &gt;&gt; enter
+                </p>
+                <p>
+                    <img
+                        src="file:///d:\Project\php\asset\img\10\7.PNG"
+                        alt="7"
+                    />
+                </p>
+            </li>
+        </ol>
+        <blockquote>
+            <p>Untuk melihat database diMySQL katik : show databases;</p>
+        </blockquote>
+        <p><img src="file:///d:\Project\php\asset\img\10\8.PNG" alt="8" /></p>
+        <hr />
+        <h2 id="membuat-database">Membuat Database</h2>
+        <ul>
+            <li>
+                <p>database : phpdasar</p>
+            </li>
+            <li>
+                <p>tabel : mahasiswa</p>
+                <ul>
+                    <li>id int primary key auto_increment</li>
+                    <li>nama varchar(100)</li>
+                    <li>nim varchar(10)</li>
+                    <li>email varchar(100)</li>
+                    <li>jurusan varchar(100)</li>
+                    <li>gambar varchar(100)</li>
+                </ul>
+            </li>
+        </ul>
+        <hr />
+        <h2 id="syntax-database">Syntax Database</h2>
+        <pre><code class="language-sql"><span class="hljs-keyword">CREATE</span> DATABASE phpdasar
+</code></pre>
+        <hr />
+        <h2 id="menggunakan-database-mana">Menggunakan Database Mana</h2>
+        <pre><code class="language-sql">USE phpdasar;
+</code></pre>
+        <hr />
+        <h2 id="membuat-tabel">Membuat Tabel</h2>
+        <blockquote>
+            <p>create table</p>
+        </blockquote>
+        <pre><code class="language-sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> mmahasiswa (
+id <span class="hljs-type">int</span> <span class="hljs-keyword">primary</span> key auto_increment,
+nama <span class="hljs-type">varchar</span>(<span class="hljs-number">100</span>),
+nim <span class="hljs-type">char</span>(<span class="hljs-number">6</span>),
+email <span class="hljs-type">varchar</span>(<span class="hljs-number">100</span>),
+jurusan <span class="hljs-type">varchar</span>(<span class="hljs-number">100</span>),
+gambar <span class="hljs-type">varchar</span>(<span class="hljs-number">100</span>)
+);
+</code></pre>
+        <hr />
+        <h2 id="mengetahui-isi-table">Mengetahui Isi Table</h2>
+        <pre><code class="language-sql"><span class="hljs-keyword">SHOW</span> TABLES;
+</code></pre>
+        <hr />
+        <h2 id="melihat-struktur-table">Melihat Struktur Table</h2>
+        <pre><code class="language-sql"><span class="hljs-keyword">DESCRIBE</span> mahasiswa;
+</code></pre>
+        <hr />
+        <h2 id="mengisi-data">Mengisi Data</h2>
+        <pre><code class="language-sql"><span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> mahasiswa <span class="hljs-keyword">VALUES</span>(<span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-string">&#x27;faizal&#x27;</span>, <span class="hljs-string">&#x27;B21055&#x27;</span>, <span class="hljs-string">&#x27;faizal@gmail.com&#x27;</span>, <span class="hljs-string">&#x27;Sistem Informasi&#x27;</span>, <span class="hljs-string">&#x27;faizal.jpg&#x27;</span>);
+</code></pre>
+        <hr />
+        <h2 id="melihat-data">Melihat Data</h2>
+        <pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> mahasiswa;
+</code></pre>
+        <pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> nim <span class="hljs-keyword">FROM</span> mahasiswa;
+</code></pre>
+        <pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> nama, nim <span class="hljs-keyword">FROM</span> mahasiswa;
+</code></pre>
+        <pre><code class="language-sql"><span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> mahasiswa <span class="hljs-keyword">WHERE</span> nim <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;B21055&#x27;</span>;
+</code></pre>
+        <hr />
+        <h2 id="mengubah-data">Mengubah Data</h2>
+        <pre><code class="language-sql"><span class="hljs-keyword">UPDATE</span> mahasiswa <span class="hljs-keyword">SET</span> jurusan <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Teknik Industri&#x27;</span> <span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">=</span> <span class="hljs-number">2</span>;
+</code></pre>
+        <hr />
+        <h2 id="menghapus">Menghapus</h2>
+        <pre><code class="language-php">DELETE FROM mahasiswa WHERE id = <span class="hljs-number">3</span>;
+</code></pre>
+        <blockquote>
+            <p>CRUD : Created Read Update Delete</p>
+        </blockquote>
+        <hr />
+        <h2 id="menghapus-tabel">Menghapus Tabel</h2>
+        <pre><code class="language-sql"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> mahasiswa;
+</code></pre>
+        <hr />
+        <h2 id="menghapus-database">Menghapus Database</h2>
+        <pre><code class="language-sql"><span class="hljs-keyword">DROP</span> DATABASE phpdasar;
+</code></pre>
+        <hr />
+        <h2 id="apk-phpmyadmin">Apk phpMyadmin</h2>
+        <ul>
+            <li>
+                <p>apk GUI untuk database</p>
+                <ol>
+                    <li>
+                        <p>aktifkan apache dan MySQL di XAMPP control panel</p>
+                        <p>
+                            <img
+                                src="file:///d:\Project\php\asset\img\10\9.PNG"
+                                alt="9"
+                            />
+                        </p>
+                    </li>
+                    <li>
+                        <p>masuk ke chrome</p>
+                    </li>
+                    <li>
+                        <p>ketik diURL : localhost/phpmyadmin</p>
+                        <p>
+                            <img
+                                src="file:///d:\Project\php\asset\img\10\10.PNG"
+                                alt="10"
+                            />
+                        </p>
+                    </li>
+                </ol>
+            </li>
+        </ul>
+    </body>
+</html>

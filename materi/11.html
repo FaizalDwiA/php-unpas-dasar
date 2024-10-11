@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Menghubugkan PHP &amp; MySQL</title>
+        <style>
+            /* From extension vscode.github */
+            /*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+            .vscode-dark img[src$="\#gh-light-mode-only"],
+            .vscode-light img[src$="\#gh-dark-mode-only"] {
+                display: none;
+            }
+        </style>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <link rel="stylesheet" href="../asset/css/markdown.min.css" />
+        <link rel="stylesheet" href="../asset/css/highlight.min.css" />
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC",
+                    "Segoe UI", system-ui, "Ubuntu", "Droid Sans", sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+            .task-list-item {
+                list-style-type: none;
+            }
+
+            .task-list-item-checkbox {
+                margin-left: -20px;
+                vertical-align: middle;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="menghubugkan-php--mysql">Menghubugkan PHP &amp; MySQL</h1>
+        <h2 id="driver--extensi-yang-ada-diphp">
+            Driver / Extensi Yang Ada diPHP
+        </h2>
+        <ul>
+            <li>
+                Ektensi MySQL
+                <ul>
+                    <li>
+                        driver / extensi / fungsi2 yang ada didalam php yang
+                        berguna untuk memanipulasi database MySQL
+                    </li>
+                </ul>
+            </li>
+            <li>
+                Ekstensi MySQLi
+                <ul>
+                    <li>sudah diupdate lebih aman</li>
+                    <li>i kecil dibelakang : impluf / sudah diperbaiki</li>
+                </ul>
+            </li>
+            <li>
+                PDO (PHP Data Object)
+                <ul>
+                    <li>
+                        driver untuk terhubung kedalam database seperti MySQL,
+                        dengan PDO kita bisa terhubung kebanyak database
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        <p><em>index.php</em></p>
+        <pre><code class="language-php">&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Document&lt;/title&gt;
+        &lt;style&gt;
+            img {
+                width: <span class="hljs-number">50</span>px;
+                height: <span class="hljs-number">50</span>px;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Daftar Mahasiswa&lt;/h1&gt;
+
+        &lt;table border=<span class="hljs-string">&quot;1&quot;</span> cellpadding=<span class="hljs-string">&quot;10&quot;</span> cellspacing=<span class="hljs-string">&quot;0&quot;</span>&gt;
+            &lt;tr&gt;
+                &lt;th&gt;No.&lt;/th&gt;
+                &lt;th&gt;Aksi&lt;/th&gt;
+                &lt;th&gt;Gambar&lt;/th&gt;
+                &lt;th&gt;Nim&lt;/th&gt;
+                &lt;th&gt;Nama&lt;/th&gt;
+                &lt;th&gt;Email&lt;/th&gt;
+                &lt;th&gt;Jurusan&lt;/th&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;<span class="hljs-number">1</span>&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;a href=<span class="hljs-string">&quot;&quot;</span>&gt;Ubah&lt;/a&gt; |
+                    &lt;a href=<span class="hljs-string">&quot;&quot;</span>&gt;Hapus&lt;/a&gt;
+                &lt;/td&gt;
+                &lt;td&gt;&lt;img src=<span class="hljs-string">&quot;img/faizal.jpg&quot;</span> /&gt;&lt;/td&gt;
+                &lt;td&gt;B21055&lt;/td&gt;
+                &lt;td&gt;Faizal Dwi Al Farizi&lt;/td&gt;
+                &lt;td&gt;faizal@gmail.com&lt;/td&gt;
+                &lt;td&gt;Sistem Informasi&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><img src="file:///d:\Project\php\asset\img\11\1.PNG" alt="1" /></p>
+        <hr />
+        <h2 id="koneksi-database">Koneksi Database</h2>
+        <p>
+            mysqli_connect(&quot;nama host&quot;, &quot;username&quot;,
+            &quot;password&quot;, &quot;database&quot;)
+        </p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-title function_ invoke__">mysqli_connect</span>(<span class="hljs-string">&quot;localhost&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;phpdasar&quot;</span>);
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <hr />
+        <h2 id="ambil-data-dari-tabel-mahasiswa--query-data-mahasiswa">
+            Ambil Data Dari Tabel Mahasiswa / Query Data Mahasiswa
+        </h2>
+        <ul>
+            <li>masukkan mysqli_connect tadi ke sebuah variable</li>
+            <li>
+                mysqli_query(&quot;koneksi kedatabase&quot;,
+                &quot;querynya&quot;
+            </li>
+        </ul>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-variable">$conn</span> = <span class="hljs-title function_ invoke__">mysqli_connect</span>(<span class="hljs-string">&quot;localhost&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;phpdasar&quot;</span>);
+<span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">mysqli_query</span>(<span class="hljs-variable">$conn</span>, <span class="hljs-string">&quot;select * from mahasiswa&quot;</span>);
+
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <hr />
+        <h2 id="format-disarankan-dari-sql">Format Disarankan Dari Sql</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-variable">$conn</span> = <span class="hljs-title function_ invoke__">mysqli_connect</span>(<span class="hljs-string">&quot;localhost&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;phpdasar&quot;</span>);
+<span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">mysqli_query</span>(<span class="hljs-variable">$conn</span>, <span class="hljs-string">&quot;SELECT * FROM mahasiswa&quot;</span>);
+
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <hr />
+        <h2 id="mengecek-apakah-sudah-terkoneksi--belum">
+            Mengecek Apakah Sudah Terkoneksi / Belum
+        </h2>
+        <p>var_dump($result);</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-variable">$conn</span> = <span class="hljs-title function_ invoke__">mysqli_connect</span>(<span class="hljs-string">&quot;localhost&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;phpdasar&quot;</span>);
+<span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">mysqli_query</span>(<span class="hljs-variable">$conn</span>, <span class="hljs-string">&quot;SELECT * FROM mahasiswa&quot;</span>);
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$result</span>);
+
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p>Hasil :</p>
+        <p>
+            object(mysqli_result)#2 (5) { [&quot;current_field&quot;]=&gt;
+            int(0) [&quot;field_count&quot;]=&gt; int(6)
+            [&quot;lengths&quot;]=&gt; NULL [&quot;num_rows&quot;]=&gt; int(7)
+            [&quot;type&quot;]=&gt; int(0) }
+        </p>
+        <h3 id="jika-gagal">Jika gagal</h3>
+        <p>mysqli_query($conn, &quot;SELECT * FROM mahasiswaa&quot;)</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-variable">$conn</span> = <span class="hljs-title function_ invoke__">mysqli_connect</span>(<span class="hljs-string">&quot;localhost&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;phpdasar&quot;</span>);
+<span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">mysqli_query</span>(<span class="hljs-variable">$conn</span>, <span class="hljs-string">&quot;SELECT * FROM mahasiswaa&quot;</span>);
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$result</span>);
+
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p>Hasil :</p>
+        <p>bool(false)</p>
+        <hr />
+        <h2 id="ada-pesan-error">Ada Pesan Error</h2>
+        <p>echo mysqli_error($conn)</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-variable">$conn</span> = <span class="hljs-title function_ invoke__">mysqli_connect</span>(<span class="hljs-string">&quot;localhost&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;phpdasar&quot;</span>);
+<span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">mysqli_query</span>(<span class="hljs-variable">$conn</span>, <span class="hljs-string">&quot;SELECT * FROM mahasiswaa&quot;</span>);
+<span class="hljs-keyword">if</span>( !<span class="hljs-variable">$result</span> ) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">mysqli_error</span>(<span class="hljs-variable">$conn</span>);
+}
+
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p>Hasil :</p>
+        <p>Table 'phpdasar.mahasiswaa' doesn't exist</p>
+        <hr />
+        <h2 id="mengambil-data">Mengambil Data</h2>
+        <p>ambil data (fetch) mahasiswa dari object result</p>
+        <ul>
+            <li>mysqli_fetch_row()</li>
+            <li>mysqli_fetch_assoc()</li>
+            <li>mysqli_fetch_array()</li>
+            <li>mysqli_fetch_object()</li>
+        </ul>
+        <h3 id="mysqli_fetch_row">mysqli_fetch_row()</h3>
+        <ul>
+            <li>mengembalikan array numerik (index nya angka)</li>
+            <li>$mhs = mysqli_fetch_row($result);</li>
+        </ul>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-variable">$conn</span> = <span class="hljs-title function_ invoke__">mysqli_connect</span>(<span class="hljs-string">&quot;localhost&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;phpdasar&quot;</span>);
+<span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">mysqli_query</span>(<span class="hljs-variable">$conn</span>, <span class="hljs-string">&quot;SELECT * FROM mahasiswa&quot;</span>);
+<span class="hljs-variable">$mhs</span> = <span class="hljs-title function_ invoke__">mysqli_fetch_row</span>(<span class="hljs-variable">$result</span>);
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$mhs</span>);
+
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p>Hasil :</p>
+        <p>
+            array(6) { [0]=&gt; string(1) &quot;1&quot; [1]=&gt; string(6)
+            &quot;B21055&quot; [2]=&gt; string(6) &quot;Faizal&quot; [3]=&gt;
+            string(16) &quot;<a href="mailto:faizal@gmail.com"
+                >faizal@gmail.com</a
+            >&quot; [4]=&gt; string(19) &quot;Teknologi Informasi&quot; [5]=&gt;
+            string(17) &quot;62735a7bad89b.jpg&quot; }
+        </p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-variable">$conn</span> = <span class="hljs-title function_ invoke__">mysqli_connect</span>(<span class="hljs-string">&quot;localhost&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;phpdasar&quot;</span>);
+<span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">mysqli_query</span>(<span class="hljs-variable">$conn</span>, <span class="hljs-string">&quot;SELECT * FROM mahasiswa&quot;</span>);
+<span class="hljs-variable">$mhs</span> = <span class="hljs-title function_ invoke__">mysqli_fetch_row</span>(<span class="hljs-variable">$result</span>);
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$mhs</span>[<span class="hljs-number">4</span>]);
+
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p>Hasil :</p>
+        <p>string(19) &quot;Teknologi Informasi&quot;</p>
+        <h3 id="mysqli_fetch_assoc">mysqli_fetch_assoc()</h3>
+        <ul>
+            <li>mengembalikan array associative (index nya string)</li>
+            <li>$mhs = mysqli_fetch_assoc($result);</li>
+        </ul>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-variable">$conn</span> = <span class="hljs-title function_ invoke__">mysqli_connect</span>(<span class="hljs-string">&quot;localhost&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;phpdasar&quot;</span>);
+<span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">mysqli_query</span>(<span class="hljs-variable">$conn</span>, <span class="hljs-string">&quot;SELECT * FROM mahasiswa&quot;</span>);
+<span class="hljs-variable">$mhs</span> = <span class="hljs-title function_ invoke__">mysqli_fetch_assoc</span>(<span class="hljs-variable">$result</span>);
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$mhs</span>);
+
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p>Hasil :</p>
+        <p>
+            array(6) { [&quot;id&quot;]=&gt; string(1) &quot;1&quot;
+            [&quot;nim&quot;]=&gt; string(6) &quot;B21055&quot;
+            [&quot;nama&quot;]=&gt; string(6) &quot;Faizal&quot;
+            [&quot;email&quot;]=&gt; string(16) &quot;<a
+                href="mailto:faizal@gmail.com"
+                >faizal@gmail.com</a
+            >&quot; [&quot;jurusan&quot;]=&gt; string(19) &quot;Teknologi
+            Informasi&quot; [&quot;gambar&quot;]=&gt; string(17)
+            &quot;62735a7bad89b.jpg&quot; }
+        </p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-variable">$conn</span> = <span class="hljs-title function_ invoke__">mysqli_connect</span>(<span class="hljs-string">&quot;localhost&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;phpdasar&quot;</span>);
+<span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">mysqli_query</span>(<span class="hljs-variable">$conn</span>, <span class="hljs-string">&quot;SELECT * FROM mahasiswa&quot;</span>);
+<span class="hljs-variable">$mhs</span> = <span class="hljs-title function_ invoke__">mysqli_fetch_assoc</span>(<span class="hljs-variable">$result</span>);
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$mhs</span>[<span class="hljs-string">&quot;jurusan&quot;</span>]);
+
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p>Hasil :</p>
+        <p>string(19) &quot;Teknologi Informasi&quot;</p>
+        <h3 id="mysqli_fetch_array">mysqli_fetch_array</h3>
+        <ul>
+            <li>Mengembalikan keduanya (angka / string)</li>
+            <li>$mhs = mysqli_fetch_array($result);</li>
+        </ul>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-variable">$conn</span> = <span class="hljs-title function_ invoke__">mysqli_connect</span>(<span class="hljs-string">&quot;localhost&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;phpdasar&quot;</span>);
+<span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">mysqli_query</span>(<span class="hljs-variable">$conn</span>, <span class="hljs-string">&quot;SELECT * FROM mahasiswa&quot;</span>);
+<span class="hljs-variable">$mhs</span> = <span class="hljs-title function_ invoke__">mysqli_fetch_array</span>(<span class="hljs-variable">$result</span>);
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$mhs</span>[<span class="hljs-number">4</span>]);
+
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p>Hasil :</p>
+        <p>string(19) &quot;Teknologi Informasi&quot;</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-variable">$conn</span> = <span class="hljs-title function_ invoke__">mysqli_connect</span>(<span class="hljs-string">&quot;localhost&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;phpdasar&quot;</span>);
+<span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">mysqli_query</span>(<span class="hljs-variable">$conn</span>, <span class="hljs-string">&quot;SELECT * FROM mahasiswa&quot;</span>);
+<span class="hljs-variable">$mhs</span> = <span class="hljs-title function_ invoke__">mysqli_fetch_array</span>(<span class="hljs-variable">$result</span>);
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$mhs</span>[<span class="hljs-string">&quot;id&quot;</span>]);
+
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p>Hasil :</p>
+        <p>string(1) &quot;1&quot;</p>
+        <h3 id="kekurangan-assoc">Kekurangan Assoc</h3>
+        <ul>
+            <li>data yang ditampilkan double</li>
+            <li>var_dump($mhs)</li>
+        </ul>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-variable">$conn</span> = <span class="hljs-title function_ invoke__">mysqli_connect</span>(<span class="hljs-string">&quot;localhost&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;phpdasar&quot;</span>);
+<span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">mysqli_query</span>(<span class="hljs-variable">$conn</span>, <span class="hljs-string">&quot;SELECT * FROM mahasiswa&quot;</span>);
+<span class="hljs-variable">$mhs</span> = <span class="hljs-title function_ invoke__">mysqli_fetch_array</span>(<span class="hljs-variable">$result</span>);
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$mhs</span>);
+
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p>Hasil :</p>
+        <p>
+            array(12) { [0]=&gt; string(1) &quot;1&quot; [&quot;id&quot;]=&gt;
+            string(1) &quot;1&quot; [1]=&gt; string(6) &quot;B21055&quot;
+            [&quot;nim&quot;]=&gt; string(6) &quot;B21055&quot; [2]=&gt;
+            string(6) &quot;Faizal&quot; [&quot;nama&quot;]=&gt; string(6)
+            &quot;Faizal&quot; [3]=&gt; string(16) &quot;<a
+                href="mailto:faizal@gmail.com"
+                >faizal@gmail.com</a
+            >&quot; [&quot;email&quot;]=&gt; string(16) &quot;<a
+                href="mailto:faizal@gmail.com"
+                >faizal@gmail.com</a
+            >&quot; [4]=&gt; string(19) &quot;Teknologi Informasi&quot;
+            [&quot;jurusan&quot;]=&gt; string(19) &quot;Teknologi
+            Informasi&quot; [5]=&gt; string(17) &quot;62735a7bad89b.jpg&quot;
+            [&quot;gambar&quot;]=&gt; string(17) &quot;62735a7bad89b.jpg&quot; }
+        </p>
+        <blockquote>
+            <p>saran : mending mysqli_fetch_assoc / mysqli_fetch_row</p>
+        </blockquote>
+        <h3 id="mysqli_fetch_object">mysqli_fetch_object</h3>
+        <p>$mhs = mysqli_fetch_object($result);</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-variable">$conn</span> = <span class="hljs-title function_ invoke__">mysqli_connect</span>(<span class="hljs-string">&quot;localhost&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;phpdasar&quot;</span>);
+<span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">mysqli_query</span>(<span class="hljs-variable">$conn</span>, <span class="hljs-string">&quot;SELECT * FROM mahasiswa&quot;</span>);
+<span class="hljs-variable">$mhs</span> = <span class="hljs-title function_ invoke__">mysqli_fetch_object</span>(<span class="hljs-variable">$result</span>);
+<span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$mhs</span>-&gt;email);
+
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p>Hasil :</p>
+        <p>
+            string(16) &quot;<a href="mailto:faizal@gmail.com"
+                >faizal@gmail.com</a
+            >&quot;
+        </p>
+        <p>tapi ini baru diambil 1</p>
+        <hr />
+        <h2 id="melihat-semua-data">Melihat Semua Data</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// koneksi database</span>
+<span class="hljs-variable">$conn</span> = <span class="hljs-title function_ invoke__">mysqli_connect</span>(<span class="hljs-string">&quot;localhost&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;phpdasar&quot;</span>);
+
+<span class="hljs-comment">// ambil data dari tabel mahasiswa / query data mahasiswa</span>
+<span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">mysqli_query</span>(<span class="hljs-variable">$conn</span>, <span class="hljs-string">&quot;SELECT * FROM mahasiswa&quot;</span>);
+<span class="hljs-keyword">while</span>( <span class="hljs-variable">$mhs</span> = <span class="hljs-title function_ invoke__">mysqli_fetch_assoc</span>(<span class="hljs-variable">$result</span>) ) {
+    <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$mhs</span>);
+};
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// koneksi database</span>
+<span class="hljs-variable">$conn</span> = <span class="hljs-title function_ invoke__">mysqli_connect</span>(<span class="hljs-string">&quot;localhost&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;phpdasar&quot;</span>);
+
+<span class="hljs-comment">// ambil data dari tabel mahasiswa / query data mahasiswa</span>
+<span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">mysqli_query</span>(<span class="hljs-variable">$conn</span>, <span class="hljs-string">&quot;SELECT * FROM mahasiswa&quot;</span>);
+<span class="hljs-keyword">while</span>( <span class="hljs-variable">$mhs</span> = <span class="hljs-title function_ invoke__">mysqli_fetch_assoc</span>(<span class="hljs-variable">$result</span>) ) {
+    <span class="hljs-title function_ invoke__">var_dump</span>(<span class="hljs-variable">$mhs</span>[<span class="hljs-string">&quot;nama&quot;</span>]);
+};
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <hr />
+        <h2 id="menghubungkan">Menghubungkan</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// koneksi database</span>
+<span class="hljs-variable">$conn</span> = <span class="hljs-title function_ invoke__">mysqli_connect</span>(<span class="hljs-string">&quot;localhost&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;phpdasar&quot;</span>);
+
+<span class="hljs-comment">// ambil data dari tabel mahasiswa / query data mahasiswa</span>
+<span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">mysqli_query</span>(<span class="hljs-variable">$conn</span>, <span class="hljs-string">&quot;SELECT * FROM mahasiswa&quot;</span>);
+<span class="hljs-meta">?&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Document&lt;/title&gt;
+        &lt;style&gt;
+            img {
+                width: <span class="hljs-number">50</span>px;
+                height: <span class="hljs-number">50</span>px;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Daftar Mahasiswa&lt;/h1&gt;
+
+        &lt;table border=<span class="hljs-string">&quot;1&quot;</span> cellpadding=<span class="hljs-string">&quot;10&quot;</span> cellspacing=<span class="hljs-string">&quot;0&quot;</span>&gt;
+            &lt;tr&gt;
+                &lt;th&gt;No.&lt;/th&gt;
+                &lt;th&gt;Aksi&lt;/th&gt;
+                &lt;th&gt;Gambar&lt;/th&gt;
+                &lt;th&gt;Nim&lt;/th&gt;
+                &lt;th&gt;Nama&lt;/th&gt;
+                &lt;th&gt;Email&lt;/th&gt;
+                &lt;th&gt;Jurusan&lt;/th&gt;
+            &lt;/tr&gt;
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">while</span>( <span class="hljs-variable">$row</span> = <span class="hljs-title function_ invoke__">mysqli_fetch_assoc</span>(<span class="hljs-variable">$result</span>) ) : <span class="hljs-meta">?&gt;</span>
+            &lt;tr&gt;
+                &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;id&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;a href=<span class="hljs-string">&quot;&quot;</span>&gt;Ubah&lt;/a&gt; |
+                    &lt;a href=<span class="hljs-string">&quot;&quot;</span>&gt;Hapus&lt;/a&gt;
+                &lt;/td&gt;
+                &lt;td&gt;&lt;img src=<span class="hljs-string">&quot;img/&lt;?= <span class="hljs-subst">$row</span>[&quot;</span>gambar<span class="hljs-string">&quot;]; ?&gt;&quot;</span>&gt;&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;nim&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;nama&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;email&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;jurusan&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+            &lt;/tr&gt;
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">endwhile</span>; <span class="hljs-meta">?&gt;</span>
+        &lt;/table&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <hr />
+        <h2 id="untuk-mengurutkan-id">Untuk Mengurutkan ID</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// koneksi database</span>
+<span class="hljs-variable">$conn</span> = <span class="hljs-title function_ invoke__">mysqli_connect</span>(<span class="hljs-string">&quot;localhost&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;phpdasar&quot;</span>);
+
+<span class="hljs-comment">// ambil data dari tabel mahasiswa / query data mahasiswa</span>
+<span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">mysqli_query</span>(<span class="hljs-variable">$conn</span>, <span class="hljs-string">&quot;SELECT * FROM mahasiswa&quot;</span>);
+<span class="hljs-meta">?&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Document&lt;/title&gt;
+        &lt;style&gt;
+            img {
+                width: <span class="hljs-number">50</span>px;
+                height: <span class="hljs-number">50</span>px;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Daftar Mahasiswa&lt;/h1&gt;
+
+        &lt;table border=<span class="hljs-string">&quot;1&quot;</span> cellpadding=<span class="hljs-string">&quot;10&quot;</span> cellspacing=<span class="hljs-string">&quot;0&quot;</span>&gt;
+            &lt;tr&gt;
+                &lt;th&gt;No.&lt;/th&gt;
+                &lt;th&gt;Aksi&lt;/th&gt;
+                &lt;th&gt;Gambar&lt;/th&gt;
+                &lt;th&gt;Nim&lt;/th&gt;
+                &lt;th&gt;Nama&lt;/th&gt;
+                &lt;th&gt;Email&lt;/th&gt;
+                &lt;th&gt;Jurusan&lt;/th&gt;
+            &lt;/tr&gt;
+
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-variable">$i</span> = <span class="hljs-number">1</span>; <span class="hljs-meta">?&gt;</span>
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">while</span>( <span class="hljs-variable">$row</span> = <span class="hljs-title function_ invoke__">mysqli_fetch_assoc</span>(<span class="hljs-variable">$result</span>) ) : <span class="hljs-meta">?&gt;</span>
+            &lt;tr&gt;
+                &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$i</span>; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;a href=<span class="hljs-string">&quot;&quot;</span>&gt;Ubah&lt;/a&gt; |
+                    &lt;a href=<span class="hljs-string">&quot;&quot;</span>&gt;Hapus&lt;/a&gt;
+                &lt;/td&gt;
+                &lt;td&gt;&lt;img src=<span class="hljs-string">&quot;img/&lt;?= <span class="hljs-subst">$row</span>[&quot;</span>gambar<span class="hljs-string">&quot;]; ?&gt;&quot;</span>&gt;&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;nim&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;nama&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;email&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;jurusan&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+            &lt;/tr&gt;
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-variable">$i</span>++; <span class="hljs-meta">?&gt;</span>
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">endwhile</span>; <span class="hljs-meta">?&gt;</span>
+        &lt;/table&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <hr />
+        <h2 id="agar-lebih-complex">Agar Lebih Complex</h2>
+        <p>require : memanggil file php ketempat lain / bisa dengan include</p>
+        <p><em>index.php</em></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-keyword">require</span> <span class="hljs-string">&#x27;functions.php&#x27;</span>;
+<span class="hljs-variable">$mahasiswa</span> = <span class="hljs-title function_ invoke__">query</span>(<span class="hljs-string">&quot;SELECT * FROM mahasiswa&quot;</span>);
+<span class="hljs-meta">?&gt;</span>
+&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Document&lt;/title&gt;
+        &lt;style&gt;
+            img {
+                width: <span class="hljs-number">50</span>px;
+                height: <span class="hljs-number">50</span>px;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Daftar Mahasiswa&lt;/h1&gt;
+
+        &lt;table border=<span class="hljs-string">&quot;1&quot;</span> cellpadding=<span class="hljs-string">&quot;10&quot;</span> cellspacing=<span class="hljs-string">&quot;0&quot;</span>&gt;
+            &lt;tr&gt;
+                &lt;th&gt;No.&lt;/th&gt;
+                &lt;th&gt;Aksi&lt;/th&gt;
+                &lt;th&gt;Gambar&lt;/th&gt;
+                &lt;th&gt;Nim&lt;/th&gt;
+                &lt;th&gt;Nama&lt;/th&gt;
+                &lt;th&gt;Email&lt;/th&gt;
+                &lt;th&gt;Jurusan&lt;/th&gt;
+            &lt;/tr&gt;
+
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-variable">$i</span> = <span class="hljs-number">1</span>; <span class="hljs-meta">?&gt;</span>
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">foreach</span>( <span class="hljs-variable">$mahasiswa</span> <span class="hljs-keyword">as</span> <span class="hljs-variable">$row</span> ) : <span class="hljs-meta">?&gt;</span>
+            &lt;tr&gt;
+                &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$i</span>; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+                &lt;td&gt;
+                    &lt;a href=<span class="hljs-string">&quot;&quot;</span>&gt;Ubah&lt;/a&gt; |
+                    &lt;a href=<span class="hljs-string">&quot;&quot;</span>&gt;Hapus&lt;/a&gt;
+                &lt;/td&gt;
+                &lt;td&gt;&lt;img src=<span class="hljs-string">&quot;img/&lt;?= <span class="hljs-subst">$row</span>[&quot;</span>gambar<span class="hljs-string">&quot;]; ?&gt;&quot;</span>&gt;&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;nim&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;nama&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;email&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-variable">$row</span>[<span class="hljs-string">&quot;jurusan&quot;</span>]; <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+            &lt;/tr&gt;
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-variable">$i</span>++; <span class="hljs-meta">?&gt;</span>
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">endforeach</span>; <span class="hljs-meta">?&gt;</span>
+        &lt;/table&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><em>functions.php</em></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-comment">// koneksi database</span>
+<span class="hljs-variable">$conn</span> = <span class="hljs-title function_ invoke__">mysqli_connect</span>(<span class="hljs-string">&quot;localhost&quot;</span>, <span class="hljs-string">&quot;root&quot;</span>, <span class="hljs-string">&quot;&quot;</span>, <span class="hljs-string">&quot;phpdasar&quot;</span>);
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">query</span>(<span class="hljs-params"><span class="hljs-variable">$query</span></span>) </span>{
+    <span class="hljs-keyword">global</span> <span class="hljs-variable">$conn</span>;
+    <span class="hljs-variable">$result</span> = <span class="hljs-title function_ invoke__">mysqli_query</span>(<span class="hljs-variable">$conn</span>, <span class="hljs-variable">$query</span>);
+    <span class="hljs-variable">$rows</span> = [];
+    <span class="hljs-keyword">while</span>( <span class="hljs-variable">$row</span> = <span class="hljs-title function_ invoke__">mysqli_fetch_assoc</span>(<span class="hljs-variable">$result</span>) ) {
+        <span class="hljs-variable">$rows</span>[] = <span class="hljs-variable">$row</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$rows</span>;
+}
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+
+        <script
+            async
+            src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"
+        ></script>
+    </body>
+</html>

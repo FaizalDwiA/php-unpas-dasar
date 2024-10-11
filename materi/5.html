@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Control Flow &sol; Struktur Kendali</title>
+        <style>
+            /* From extension vscode.github */
+            /*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+            .vscode-dark img[src$="\#gh-light-mode-only"],
+            .vscode-light img[src$="\#gh-dark-mode-only"] {
+                display: none;
+            }
+        </style>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <link rel="stylesheet" href="../asset/css/markdown.min.css" />
+        <link rel="stylesheet" href="../asset/css/highlight.min.css" />
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC",
+                    "Segoe UI", system-ui, "Ubuntu", "Droid Sans", sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+            .task-list-item {
+                list-style-type: none;
+            }
+
+            .task-list-item-checkbox {
+                margin-left: -20px;
+                vertical-align: middle;
+                pointer-events: none;
+            }
+        </style>
+    </head>
+    <body class="vscode-body vscode-light">
+        <h1 id="control-flow--struktur-kendali">
+            Control Flow / Struktur Kendali
+        </h1>
+        <h2 id="pengertian">Pengertian</h2>
+        <p>Bagaimana alur diprogram kita ketika dibaca oleh Interpreter PHP</p>
+        <p>Normalnya : dibaca dari atas ke bawah</p>
+        <p>
+            Dengan control flow : kita bisa mengatur alur pembacaan programnya
+            secara yang kita inginkan
+        </p>
+        <hr />
+        <h2 id="pengulangan">Pengulangan</h2>
+        <p>
+            ketika kita ingin mengerjakan sebuah blok program tanpa harus
+            menulis ulang scriptnya
+        </p>
+        <ul>
+            <li>for</li>
+            <li>while</li>
+            <li>do.. while</li>
+            <li>foreach {khusus array}</li>
+        </ul>
+        <hr />
+        <h2 id="pengkondisian">Pengkondisian</h2>
+        <ul>
+            <li>if.. else</li>
+            <li>if.. else if.. else</li>
+            <li>ternary</li>
+            <li>switch</li>
+        </ul>
+        <hr />
+        <h2 id="for">For</h2>
+        <p>for ($i = 0; $i &lt; 5; $i++)</p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-variable">$i</span> = <span class="hljs-number">0</span>; <span class="hljs-variable">$i</span> &lt; <span class="hljs-number">5</span>; <span class="hljs-variable">$i</span>++) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Hello World! &lt;br&gt;&quot;</span>;
+}
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\5\1.PNG" alt="1" /></p>
+        <hr />
+        <h2 id="while">While</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$i</span> = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">while</span> (<span class="hljs-variable">$i</span> &lt; <span class="hljs-number">5</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Hello World! &lt;br&gt;&quot;</span>;
+    <span class="hljs-variable">$i</span>++;
+}
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\5\1.PNG" alt="1" /></p>
+        <hr />
+        <h2 id="looping-forever">Looping Forever</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$i</span> = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">while</span> (<span class="hljs-variable">$i</span> &lt; <span class="hljs-number">5</span>) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Hello World! &lt;br&gt;&quot;</span>;
+}
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <hr />
+        <h2 id="do-while">do.. while</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$i</span> = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">do</span> {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Hello World! &lt;br&gt;&quot;</span>;
+    <span class="hljs-variable">$i</span>++;
+} <span class="hljs-keyword">while</span>( <span class="hljs-variable">$i</span> &lt; <span class="hljs-number">5</span> );
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\5\1.PNG" alt="1" /></p>
+        <hr />
+        <h2 id="perbedaan-antara-while--do-while">
+            Perbedaan Antara while &amp; do.. while
+        </h2>
+        <ul>
+            <li>
+                do.. while : ketika kondisinya bernilai false, maka block nya
+                akan dijalankan dulu 1x
+            </li>
+            <li>
+                while : ketika kondisinya bernilai false, tidak akan dijalankan
+            </li>
+        </ul>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$i</span> = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">do</span> {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Hello World! &lt;br&gt;&quot;</span>;
+    <span class="hljs-variable">$i</span>++;
+} <span class="hljs-keyword">while</span>( <span class="hljs-variable">$i</span> &lt; <span class="hljs-number">5</span> );
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\5\2.PNG" alt="2" /></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$i</span> = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">while</span>( <span class="hljs-variable">$i</span> &lt; <span class="hljs-number">5</span> ) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;Hello World! &lt;br&gt;&quot;</span>;
+    <span class="hljs-variable">$i</span>++;
+}
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\5\3.PNG" alt="3" /></p>
+        <pre><code class="language-php">&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Latihan <span class="hljs-number">1</span>&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;table border=<span class="hljs-string">&quot;1&quot;</span> cellpadding=<span class="hljs-string">&quot;10&quot;</span> cellspacing=<span class="hljs-string">&quot;0&quot;</span>&gt;
+            &lt;tr&gt;
+                &lt;td&gt;<span class="hljs-number">1</span>, <span class="hljs-number">1</span>&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-number">1</span>, <span class="hljs-number">3</span>&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-number">1</span>, <span class="hljs-number">4</span>&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-number">1</span>, <span class="hljs-number">5</span>&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;<span class="hljs-number">1</span>, <span class="hljs-number">1</span>&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-number">1</span>, <span class="hljs-number">3</span>&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-number">1</span>, <span class="hljs-number">4</span>&lt;/td&gt;
+                &lt;td&gt;<span class="hljs-number">1</span>, <span class="hljs-number">5</span>&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\5\4.PNG" alt="4" /></p>
+        <pre><code class="language-php">&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+&lt;head&gt;
+    &lt;title&gt;Latihan <span class="hljs-number">1</span>&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;table border=<span class="hljs-string">&quot;1&quot;</span> cellpadding=<span class="hljs-string">&quot;10&quot;</span> cellspacing=<span class="hljs-string">&quot;0&quot;</span>&gt;
+        <span class="hljs-meta">&lt;?php</span>
+            <span class="hljs-keyword">for</span>( <span class="hljs-variable">$i</span> = <span class="hljs-number">1</span>; <span class="hljs-variable">$i</span> &lt;= <span class="hljs-number">3</span>; <span class="hljs-variable">$i</span>++ ) {
+                <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;tr&gt;&quot;</span>;
+                <span class="hljs-keyword">for</span>( <span class="hljs-variable">$j</span> = <span class="hljs-number">1</span>; <span class="hljs-variable">$j</span> &lt;= <span class="hljs-number">5</span>; <span class="hljs-variable">$j</span>++ ) {
+                    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;td&gt;<span class="hljs-subst">$i</span>, <span class="hljs-subst">$j</span>&lt;/td&gt;&quot;</span>;
+                }
+                <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;&lt;/tr&gt;&quot;</span>;
+            }
+        <span class="hljs-meta">?&gt;</span>
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\5\5.PNG" alt="5" /></p>
+        <pre><code class="language-php">&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Latihan <span class="hljs-number">1</span>&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;table border=<span class="hljs-string">&quot;1&quot;</span> cellpadding=<span class="hljs-string">&quot;10&quot;</span> cellspacing=<span class="hljs-string">&quot;0&quot;</span>&gt;
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span> = <span class="hljs-number">1</span>; <span class="hljs-variable">$i</span> &lt;= <span class="hljs-number">3</span>; <span class="hljs-variable">$i</span>++) { <span class="hljs-meta">?&gt;</span>
+            &lt;tr&gt;
+                <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">for</span>( <span class="hljs-variable">$j</span> = <span class="hljs-number">1</span>; <span class="hljs-variable">$j</span> &lt;= <span class="hljs-number">5</span>; <span class="hljs-variable">$j</span>++ ) { <span class="hljs-meta">?&gt;</span>
+                &lt;td&gt;<span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;<span class="hljs-subst">$i</span>, <span class="hljs-subst">$j</span>&quot;</span> <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+                <span class="hljs-meta">&lt;?php</span> }<span class="hljs-meta">?&gt;</span>
+            &lt;/tr&gt;
+            <span class="hljs-meta">&lt;?php</span> }<span class="hljs-meta">?&gt;</span>
+        &lt;/table&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\5\5.PNG" alt="5" /></p>
+        <pre><code class="language-php">&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Latihan <span class="hljs-number">1</span>&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;table border=<span class="hljs-string">&quot;1&quot;</span> cellpadding=<span class="hljs-string">&quot;10&quot;</span> cellspacing=<span class="hljs-string">&quot;0&quot;</span>&gt;
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span> = <span class="hljs-number">1</span>; <span class="hljs-variable">$i</span> &lt;= <span class="hljs-number">3</span>; <span class="hljs-variable">$i</span>++) : <span class="hljs-meta">?&gt;</span>
+            &lt;tr&gt;
+                <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">for</span>( <span class="hljs-variable">$j</span> = <span class="hljs-number">1</span>; <span class="hljs-variable">$j</span> &lt;= <span class="hljs-number">5</span>; <span class="hljs-variable">$j</span>++ ) : <span class="hljs-meta">?&gt;</span>
+                &lt;td&gt;<span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;<span class="hljs-subst">$i</span>, <span class="hljs-subst">$j</span>&quot;</span> <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+                <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">endfor</span> <span class="hljs-meta">?&gt;</span>
+            &lt;/tr&gt;
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">endfor</span>; <span class="hljs-meta">?&gt;</span>
+        &lt;/table&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\5\5.PNG" alt="5" /></p>
+        <hr />
+        <h2 id="-echo-menjadi-">&lt;? echo menjadi &lt;?=</h2>
+        <pre><code class="language-php">&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Latihan <span class="hljs-number">1</span>&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;table border=<span class="hljs-string">&quot;1&quot;</span> cellpadding=<span class="hljs-string">&quot;10&quot;</span> cellspacing=<span class="hljs-string">&quot;0&quot;</span>&gt;
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span> = <span class="hljs-number">1</span>; <span class="hljs-variable">$i</span> &lt;= <span class="hljs-number">3</span>; <span class="hljs-variable">$i</span>++) : <span class="hljs-meta">?&gt;</span>
+            &lt;tr&gt;
+                <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">for</span>( <span class="hljs-variable">$j</span> = <span class="hljs-number">1</span>; <span class="hljs-variable">$j</span> &lt;= <span class="hljs-number">5</span>; <span class="hljs-variable">$j</span>++ ) : <span class="hljs-meta">?&gt;</span>
+                &lt;td&gt;<span class="hljs-meta">&lt;?=</span> <span class="hljs-string">&quot;<span class="hljs-subst">$i</span>, <span class="hljs-subst">$j</span>&quot;</span> <span class="hljs-meta">?&gt;</span>&lt;/td&gt;
+                <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">endfor</span> <span class="hljs-meta">?&gt;</span>
+            &lt;/tr&gt;
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">endfor</span>; <span class="hljs-meta">?&gt;</span>
+        &lt;/table&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+        <hr />
+        <h2 id="if-else">if else</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$x</span> = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">if</span>( <span class="hljs-variable">$x</span> &lt; <span class="hljs-number">20</span> ) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;benar&quot;</span>;
+}
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\5\6.PNG" alt="6" /></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$x</span> = <span class="hljs-number">10</span>;
+<span class="hljs-keyword">if</span>( <span class="hljs-variable">$x</span> &lt; <span class="hljs-number">20</span> ) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;benar&quot;</span>;
+}
+<span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;salah&quot;</span>;
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\5\7.PNG" alt="7" /></p>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$x</span> = <span class="hljs-number">30</span>;
+<span class="hljs-keyword">if</span>( <span class="hljs-variable">$x</span> &lt; <span class="hljs-number">20</span> ) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;benar&quot;</span>;
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;salah&quot;</span>;
+}
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\5\8.PNG" alt="8" /></p>
+        <hr />
+        <h2 id="if-else-else-if">if else else if</h2>
+        <pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+<span class="hljs-variable">$x</span> = <span class="hljs-number">20</span>;
+<span class="hljs-keyword">if</span>( <span class="hljs-variable">$x</span> &lt; <span class="hljs-number">20</span> ) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;benar&quot;</span>;
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>( <span class="hljs-variable">$x</span> == <span class="hljs-number">20</span> ) {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;bingo!&quot;</span>;
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;salah&quot;</span>;
+}
+<span class="hljs-meta">?&gt;</span>
+</code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\5\9.PNG" alt="9" /></p>
+        <pre><code class="language-php">&lt;!DOCTYPE html&gt;
+&lt;html lang=<span class="hljs-string">&quot;en&quot;</span>&gt;
+    &lt;head&gt;
+        &lt;title&gt;Latihan <span class="hljs-number">1</span>&lt;/title&gt;
+        &lt;style&gt;
+            .warna-baris {
+                background-color: silver;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;table border=<span class="hljs-string">&quot;1&quot;</span> cellpadding=<span class="hljs-string">&quot;10&quot;</span> cellspacing=<span class="hljs-string">&quot;0&quot;</span>&gt;
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">for</span>(<span class="hljs-variable">$i</span> = <span class="hljs-number">1</span>; <span class="hljs-variable">$i</span> &lt;= <span class="hljs-number">5</span>; <span class="hljs-variable">$i</span>++) : <span class="hljs-meta">?&gt;</span>
+            <span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">if</span>( <span class="hljs-variable">$i</span> % <span class="hljs-number">2</span> == <span class="hljs-number">1</span> ) : <span class="hljs-meta">?&gt;</span>
+            &lt;tr <span class="hljs-class"><span class="hljs-keyword">class</span>=&quot;<span class="hljs-title">warna</span>-<span class="hljs-title">baris</span>&quot;&gt;
+                &lt;?<span class="hljs-title">php</span> <span class="hljs-title">else</span> : ?&gt;
+            &lt;/<span class="hljs-title">tr</span>&gt;
+
+            &lt;<span class="hljs-title">tr</span>&gt;
+                &lt;?<span class="hljs-title">php</span> <span class="hljs-title">endif</span>; ?&gt;
+                &lt;?<span class="hljs-title">php</span> <span class="hljs-title">for</span>( $<span class="hljs-title">j</span> = 1; $<span class="hljs-title">j</span> &lt;= 5; $<span class="hljs-title">j</span>++ ) : ?&gt;
+                &lt;<span class="hljs-title">td</span>&gt;&lt;?= &quot;$<span class="hljs-title">i</span>, $<span class="hljs-title">j</span>&quot; ?&gt;&lt;/<span class="hljs-title">td</span>&gt;
+                &lt;?<span class="hljs-title">php</span> <span class="hljs-title">endfor</span> ?&gt;
+            &lt;/<span class="hljs-title">tr</span>&gt;
+            &lt;?<span class="hljs-title">php</span> <span class="hljs-title">endfor</span>; ?&gt;
+        &lt;/<span class="hljs-title">table</span>&gt;
+    &lt;/<span class="hljs-title">body</span>&gt;
+&lt;/<span class="hljs-title">html</span>&gt;
+</span></code></pre>
+        <p><strong>Hasil :</strong></p>
+        <p><img src="file:///d:\Project\php\asset\img\5\10.PNG" alt="10" /></p>
+
+        <script
+            async
+            src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"
+        ></script>
+    </body>
+</html>
